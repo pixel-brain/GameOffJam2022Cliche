@@ -62,6 +62,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jump Corner Correction Variables")]
     public Vector2 jumpCornerCorrectSize = new Vector2(0.3f, 0.46f);
+    bool jumpCornerCorrectionUsed;
 
     [Header("Effects Jump Squash/Stretch Variables")]
     public Vector2 jumpSquashAmount = new Vector2(0.65f, 1.3f);
@@ -120,6 +121,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject spriteObject;
     public Transform spriteContainer;
     public Transform bone;
+    PlayerWait waitScript;
 
     Rigidbody2D rigi;
     BoxCollider2D col;
@@ -130,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
     {
         rigi = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
+        waitScript = GetComponent<PlayerWait>();
 
         groundedCheckPos = new Vector2(0, -col.size.y / 2f);
         groundedCheckSize = new Vector2(col.size.x - 0.02f, 0.05f);
@@ -175,6 +178,7 @@ public class PlayerMovement : MonoBehaviour
         float reachSpeedTime;
         if (move != 0)
         {
+            waitScript.ResetTime();
             if (Mathf.Sign(move) != Mathf.Sign(vel.x))
                 reachSpeedTime = turn;
             else
@@ -218,6 +222,7 @@ public class PlayerMovement : MonoBehaviour
             }
             if (fallThroughHeld && groundedTimer > 0f && onOneWay)
             {
+                waitScript.ResetTime();
                 jumpInputTimer = 0;
                 vel.y = 0;
                 fallThroughParticles.Play();
@@ -228,6 +233,8 @@ public class PlayerMovement : MonoBehaviour
             // Jump
             else if (groundedTimer > 0)
             {
+                waitScript.ResetTime();
+                jumpCornerCorrectionUsed = false;
                 fallSquashed = false;
                 jumpInputTimer = 0;
                 groundedTimer = 0;
@@ -253,6 +260,8 @@ public class PlayerMovement : MonoBehaviour
             // Double Jump
             else if (hasDoubleJump && canDoubleJump)
             {
+                waitScript.ResetTime();
+                jumpCornerCorrectionUsed = false;
                 fallSquashed = false;
                 jumpInputTimer = 0;
                 vel.y = jumpVelocity;
@@ -297,7 +306,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Jump Corner Corrections
-        if (vel.y > 1f)
+        if (vel.y > 1f && !jumpCornerCorrectionUsed)
         {
             Vector3 pos = transform.position;
             Vector2 corner = col.size / 2f;
@@ -317,10 +326,12 @@ public class PlayerMovement : MonoBehaviour
                     Vector2.left, jumpCornerCorrectSize.x, groundedCheckLayers);
                 if (sideRightHit.collider != null && move != 1)
                 {
+                    jumpCornerCorrectionUsed = true;
                     rigi.MovePosition(rigi.position + new Vector2(-(jumpCornerCorrectSize.x - sideRightHit.distance) - 0.03f, 0));
                 }
                 else if (sideLeftHit.collider != null && move != -1)
                 {
+                    jumpCornerCorrectionUsed = true;
                     rigi.MovePosition(rigi.position + new Vector2(jumpCornerCorrectSize.x - sideLeftHit.distance + 0.03f, 0));
                 }
             }

@@ -58,17 +58,6 @@ public partial class @InputMain : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""9e1e8af2-4e96-4ccc-811c-c62edc905efa"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard"",
-                    ""action"": ""Jump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""9f1c2233-395f-4ab5-92f5-97260b29c5f3"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
@@ -82,6 +71,17 @@ public partial class @InputMain : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""17c16423-c0b6-45ea-b257-ee5882e9fb38"",
                     ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7e7322e5-bc1f-4827-a226-2b544307b686"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard"",
