@@ -121,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject spriteObject;
     public Transform spriteContainer;
     public Transform bone;
-    PlayerWait waitScript;
 
     Rigidbody2D rigi;
     BoxCollider2D col;
@@ -132,7 +131,6 @@ public class PlayerMovement : MonoBehaviour
     {
         rigi = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
-        waitScript = GetComponent<PlayerWait>();
 
         groundedCheckPos = new Vector2(0, -col.size.y / 2f);
         groundedCheckSize = new Vector2(col.size.x - 0.02f, 0.05f);
@@ -178,7 +176,6 @@ public class PlayerMovement : MonoBehaviour
         float reachSpeedTime;
         if (move != 0)
         {
-            waitScript.ResetTime();
             if (Mathf.Sign(move) != Mathf.Sign(vel.x))
                 reachSpeedTime = turn;
             else
@@ -222,7 +219,6 @@ public class PlayerMovement : MonoBehaviour
             }
             if (fallThroughHeld && groundedTimer > 0f && onOneWay)
             {
-                waitScript.ResetTime();
                 jumpInputTimer = 0;
                 vel.y = 0;
                 fallThroughParticles.Play();
@@ -233,7 +229,6 @@ public class PlayerMovement : MonoBehaviour
             // Jump
             else if (groundedTimer > 0)
             {
-                waitScript.ResetTime();
                 jumpCornerCorrectionUsed = false;
                 fallSquashed = false;
                 jumpInputTimer = 0;
@@ -260,7 +255,6 @@ public class PlayerMovement : MonoBehaviour
             // Double Jump
             else if (hasDoubleJump && canDoubleJump)
             {
-                waitScript.ResetTime();
                 jumpCornerCorrectionUsed = false;
                 fallSquashed = false;
                 jumpInputTimer = 0;
