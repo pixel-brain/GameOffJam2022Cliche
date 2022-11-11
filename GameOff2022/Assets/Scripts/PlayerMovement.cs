@@ -3,9 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Controls State Variables")]
+    public bool noLeft;
+    public bool noRight;
+    public bool noJump;
+    public bool noDouble;
+    public bool noFall;
+    bool controlsOn;
+    public float controlsDisabledTime;
+    public Animator controlsFailAnim;
+    public Color32 iconColor;
+    public Color32 iconDisabledColor;
+    float controlsDisabledTimer;
 
     [Header("Move Variables")]
     [Range(0f, 1f)]
@@ -141,14 +154,22 @@ public class PlayerMovement : MonoBehaviour
 
         rigi.gravityScale = gravityScale;
         fallSquashed = true;
+
+        controlsDisabledTimer = controlsDisabledTime;
+        SetIconsColor();
     }
 
     void Update()
     {
-
+        if (controlsDisabledTimer < 0 && !controlsOn)
+        {
+            controlsOn = true;
+            SetControlsOn();
+        }
         // Decrement timers
         jumpInputTimer -= Time.deltaTime;
         groundedTimer -= Time.deltaTime;
+        controlsDisabledTimer -= Time.deltaTime;
     }
 
     void FixedUpdate()
@@ -172,6 +193,12 @@ public class PlayerMovement : MonoBehaviour
         float turn = (groundedTimer > 0) ? turnTime : turnTimeAir;
         float speed = (groundedTimer > 0) ? topSpeed : topSpeedAir;
 
+        if (move < 0 && noLeft || move > 0 && noRight)
+        {
+            move = 0;
+            PressedDisabledControl();
+        }
+
         float targetXVel = move * speed;
         float reachSpeedTime;
         if (move != 0)
@@ -193,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
         {
             // Fall through platform
             bool onOneWay = false;
-            if (fallThroughHeld && groundedTimer > 0f)
+            if (fallThroughHeld && groundedTimer > 0f && !noFall)
             {
                 // Handle Fall through Corner Correction
                 bool onewayOuterRight = Physics2D.Raycast(transform.position + new Vector3(col.size.x / 2f, -col.size.y / 2f), Vector2.down, 0.05f, onewayCheckLayers);
@@ -217,7 +244,7 @@ public class PlayerMovement : MonoBehaviour
                     }
                 }
             }
-            if (fallThroughHeld && groundedTimer > 0f && onOneWay)
+            if (onOneWay)
             {
                 jumpInputTimer = 0;
                 vel.y = 0;
@@ -229,53 +256,65 @@ public class PlayerMovement : MonoBehaviour
             // Jump
             else if (groundedTimer > 0)
             {
-                jumpCornerCorrectionUsed = false;
-                fallSquashed = false;
-                jumpInputTimer = 0;
-                groundedTimer = 0;
-                vel.y = jumpVelocity;
-
-                // Effects
-                // Squash/stretch
-                spriteObject.transform.DOKill();
-                spriteObject.transform.DOScale(jumpSquashAmount, jumpSquashDuration).SetEase(jumpSquashEaseFunction);
-                // Particles
-                jumpParticles.Play();
-                // Spawn double jump indicator
-                if (doubleJumpIndicator == null && canDoubleJump)
+                if (!noJump)
                 {
-                    doubleJumpIndicator = Instantiate(doubleJumpIndicatorPrefab, transform.position, Quaternion.identity);
-                    doubleJumpIndicator.transform.parent = transform;
-                    doubleJumpIndicator.transform.localPosition = new Vector3(0, doubleJumpIndicatorOffset);
-                }
+                    jumpCornerCorrectionUsed = false;
+                    fallSquashed = false;
+                    jumpInputTimer = 0;
+                    groundedTimer = 0;
+                    vel.y = jumpVelocity;
 
+                    // Effects
+                    // Squash/stretch
+                    spriteObject.transform.DOKill();
+                    spriteObject.transform.DOScale(jumpSquashAmount, jumpSquashDuration).SetEase(jumpSquashEaseFunction);
+                    // Particles
+                    jumpParticles.Play();
+                    // Spawn double jump indicator
+                    if (doubleJumpIndicator == null && canDoubleJump)
+                    {
+                        doubleJumpIndicator = Instantiate(doubleJumpIndicatorPrefab, transform.position, Quaternion.identity);
+                        doubleJumpIndicator.transform.parent = transform;
+                        doubleJumpIndicator.transform.localPosition = new Vector3(0, doubleJumpIndicatorOffset);
+                    }
+                }
+                else
+                {
+                    PressedDisabledControl();
+                }
             }
 
 
             // Double Jump
             else if (hasDoubleJump && canDoubleJump)
             {
-                jumpCornerCorrectionUsed = false;
-                fallSquashed = false;
-                jumpInputTimer = 0;
-                vel.y = jumpVelocity;
-                hasDoubleJump = false;
-
-                // Effects
-                // Squash/stretch
-                spriteObject.transform.DOKill();
-                spriteObject.transform.DOScale(jumpSquashAmount, jumpSquashDuration).SetEase(jumpSquashEaseFunction);
-                // Particles
-                jumpParticles.Play();
-                // Double jump indicator
-                if (doubleJumpIndicator != null)
+                if (!noDouble)
                 {
-                    doubleJumpIndicator.GetComponent<Animator>().SetTrigger("Launch");
-                    doubleJumpIndicator.transform.parent = null;
-                    Destroy(doubleJumpIndicator, 0.5f);
-                    doubleJumpIndicator = null;
-                }
+                    jumpCornerCorrectionUsed = false;
+                    fallSquashed = false;
+                    jumpInputTimer = 0;
+                    vel.y = jumpVelocity;
+                    hasDoubleJump = false;
 
+                    // Effects
+                    // Squash/stretch
+                    spriteObject.transform.DOKill();
+                    spriteObject.transform.DOScale(jumpSquashAmount, jumpSquashDuration).SetEase(jumpSquashEaseFunction);
+                    // Particles
+                    jumpParticles.Play();
+                    // Double jump indicator
+                    if (doubleJumpIndicator != null)
+                    {
+                        doubleJumpIndicator.GetComponent<Animator>().SetTrigger("Launch");
+                        doubleJumpIndicator.transform.parent = null;
+                        Destroy(doubleJumpIndicator, 0.5f);
+                        doubleJumpIndicator = null;
+                    }
+                }
+                else
+                {
+                    PressedDisabledControl();
+                }
             }
         }
 
@@ -346,7 +385,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Spawn double jump indicator when leaving the ground
-        if (wasGrounded && groundedTimer < 0)
+        if (wasGrounded && groundedTimer < 0 && !noDouble)
         {
             // Spawn double jump indicator
             if (doubleJumpIndicator == null && canDoubleJump)
@@ -377,7 +416,7 @@ public class PlayerMovement : MonoBehaviour
 
 
         // Squash when holding down
-        if (fallThroughHeld && !fallThroughSquash && groundedTimer > 0)
+        if (fallThroughHeld && !fallThroughSquash && groundedTimer > 0 && !noFall)
         {
             fallThroughSquash = true;
             spriteContainer.DOScale(readyFallThroughSquashAmount, readyFallThroughSquashDuration).SetEase(readyFallThroughSquashEaseFunction);
@@ -441,6 +480,49 @@ public class PlayerMovement : MonoBehaviour
         Physics2D.IgnoreLayerCollision(onewayLayerIndex, gameObject.layer, false);
     }
 
+    void SetControlsOn()
+    {
+        noLeft = false;
+        noRight = false;
+        noJump = false;
+        noDouble = false;
+        noFall = false;
+        SetIconsColor();
+    }
+
+    void SetIconsColor()
+    {
+        GameObject iconsParent = GameObject.Find("Icons");
+        if (iconsParent != null)
+        {
+            if (noLeft)
+                iconsParent.transform.GetChild(0).GetComponent<Image>().color = iconDisabledColor;
+            else
+                iconsParent.transform.GetChild(0).GetComponent<Image>().color = iconColor;
+            if (noRight)
+                iconsParent.transform.GetChild(1).GetComponent<Image>().color = iconDisabledColor;
+            else
+                iconsParent.transform.GetChild(1).GetComponent<Image>().color = iconColor;
+            if (noJump)
+                iconsParent.transform.GetChild(2).GetComponent<Image>().color = iconDisabledColor;
+            else
+                iconsParent.transform.GetChild(2).GetComponent<Image>().color = iconColor;
+            if (noDouble)
+                iconsParent.transform.GetChild(3).GetComponent<Image>().color = iconDisabledColor;
+            else
+                iconsParent.transform.GetChild(3).GetComponent<Image>().color = iconColor;
+            if (noFall)
+                iconsParent.transform.GetChild(4).GetComponent<Image>().color = iconDisabledColor;
+            else
+                iconsParent.transform.GetChild(4).GetComponent<Image>().color = iconColor;
+        }
+    }
+
+    void PressedDisabledControl()
+    {
+        controlsFailAnim.SetTrigger("Show");
+    }
+
     /*
     void OnDrawGizmosSelected()
     {
@@ -468,7 +550,11 @@ public class PlayerMovement : MonoBehaviour
         controls.Gameplay.Move.performed += ctx => move = Mathf.Sign(ctx.ReadValue<float>());
         controls.Gameplay.Move.canceled += ctx => move = 0f;
         // Fall through platform
-        controls.Gameplay.FallThrough.performed += ctx => fallThroughHeld = ctx.ReadValueAsButton();
+        controls.Gameplay.FallThrough.performed += ctx => {
+            fallThroughHeld = ctx.ReadValueAsButton();
+            if (ctx.ReadValueAsButton() && noFall)
+                PressedDisabledControl();
+        };
 
     }
     void OnEnable()
