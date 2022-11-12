@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3465647452889303562}
   - component: {fileID: 3465647452889303563}
   - component: {fileID: 3465647452889303564}
+  - component: {fileID: 7787913219947370414}
   m_Layer: 0
   m_Name: DeathParticles
   m_TagString: Untagged
@@ -117,8 +118,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.75
-      minScalar: 0.35
+      scalar: 0.8
+      minScalar: 0.33
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4871,6 +4872,21 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &7787913219947370414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3465647452889303565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360d9728243d2774280fd08f7efc139c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 1
+  destroyOnCollision: 0
+  destroyParticles: {fileID: 0}
 --- !u!1 &8191847623369412488
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,8 +5003,8 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.26
-      minScalar: 0.18
+      scalar: 0.33
+      minScalar: 0.22
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -5848,7 +5864,7 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 0
-        scalar: 20
+        scalar: 28
         minScalar: 30
         maxCurve:
           serializedVersion: 2
@@ -9690,7 +9706,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 72f47ca0a47c4874d9407f1d6986ad37, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

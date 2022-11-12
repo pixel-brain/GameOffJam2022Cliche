@@ -20,6 +20,9 @@ public class PlayerHealth : MonoBehaviour
     {
         ParticleSystem deathParticles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
         DontDestroyOnLoad(deathParticles);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameObject.Find("LevelManager").GetComponent<LevelManager>().Die();
+        Destroy(gameObject);
     }
+    
+
 }

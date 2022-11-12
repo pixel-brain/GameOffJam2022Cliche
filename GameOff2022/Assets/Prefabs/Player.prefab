@@ -19907,7 +19907,6 @@ MonoBehaviour:
   iconDisabledColor:
     serializedVersion: 2
     rgba: 4278190335
-  controlsDisabledTimer: 20
   accelTime: 0.058
   decelTime: 0.039
   turnTime: 0.049
@@ -19959,6 +19958,7 @@ MonoBehaviour:
   fallThroughParticles: {fileID: 7032996210053972942}
   deathParticlesPrefab: {fileID: 3465647452889303563, guid: 183ca3cd2e4113149890d7c3c6b27c38, type: 3}
   doubleJumpIndicatorPrefab: {fileID: 7665655176105299076, guid: cd3b0d3893d69fd499d71d49b59ccee0, type: 3}
+  spawnPointEffect: {fileID: 1997889247883994129, guid: f2b7483e8c1d51d40b1a02ae3779965f, type: 3}
   doubleJumpIndicatorOffset: -0.4
   spriteObject: {fileID: 7032996208725153886}
   spriteContainer: {fileID: 7032996210392957513}

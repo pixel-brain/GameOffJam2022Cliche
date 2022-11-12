@@ -1,59 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class MovingPlatform : MonoBehaviour
 {
-    public Transform[] waypoints;
-    public float moveSpeed;
-    Rigidbody2D rigi;
+    public LineRenderer lineRend;
+    public float moveTime;
+    public Ease easingFunction;
+    public bool sticky;
+    int currentIndex;
     Rigidbody2D playerRigi;
     Vector2 prevPos;
-
-    int current;
+    public int touchedColliders;
 
     // Start is called before the first frame update
     void Start()
     {
-        rigi = GetComponent<Rigidbody2D>();
+        Follow();
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    void Follow()
     {
-        float dist = Vector2.Distance(waypoints[current].position, transform.position);
-        if (dist < 0.05f)
-        {
-            current++;
-            if (current > waypoints.Length - 1)
+        Vector2 nextPos = transform.parent.position + lineRend.GetPosition(currentIndex);
+        float distance = Vector2.Distance(transform.position, nextPos);
+        transform.DOMove(nextPos, moveTime * distance).SetEase(easingFunction)
+            .OnUpdate(() =>
             {
-                current = 0;
+                if (sticky && playerRigi != null)
+                {
+                    playerRigi.position += (Vector2)transform.position - prevPos;
+                }
+                prevPos = transform.position;
+            })
+            .OnComplete(() =>
+            {
+                Follow();
+            });
+        currentIndex++;
+        if (currentIndex == lineRend.positionCount)
+        {
+            currentIndex = 0;
+        }
+    }
+
+    public void CollisionDetected(Collision2D other)
+    {
+        if (other.transform.CompareTag("Player") && other.transform.position.y > other.contacts[0].point.y)
+        {
+            touchedColliders++;
+            playerRigi = other.transform.GetComponent<Rigidbody2D>();
+        }
+    }
+
+    public void CollisionExited(Collision2D other)
+    {
+        if (other.transform.CompareTag("Player"))
+        {
+            touchedColliders--;
+            if (touchedColliders <= 0)
+            {
+                touchedColliders = 0;
+                playerRigi = null;
             }
         }
-        rigi.MovePosition(Vector2.MoveTowards(transform.position, waypoints[current].position, moveSpeed * Time.fixedDeltaTime));
-
-        if (playerRigi != null && playerRigi.position.y > rigi.position.y)
-        {
-            Vector2 platformChange = rigi.position - prevPos;
-            playerRigi.position += platformChange;
-        }
-        prevPos = rigi.position;
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-        {
-            playerRigi = collision.gameObject.GetComponent<Rigidbody2D>();
-        }
-    }
-
-    void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("Player"))
-        {
-            playerRigi = null;
-        }
-    }
-
 }

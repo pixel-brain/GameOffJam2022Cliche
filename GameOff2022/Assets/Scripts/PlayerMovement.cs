@@ -127,6 +127,7 @@ public class PlayerMovement : MonoBehaviour
     public ParticleSystem fallThroughParticles;
     public ParticleSystem deathParticlesPrefab;
     public GameObject doubleJumpIndicatorPrefab;
+    public GameObject spawnPointEffect;
     public float doubleJumpIndicatorOffset = -0.4f;
     GameObject doubleJumpIndicator;
 
@@ -146,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
 
         groundedCheckPos = new Vector2(0, -col.size.y / 2f);
-        groundedCheckSize = new Vector2(col.size.x - 0.02f, 0.05f);
+        groundedCheckSize = new Vector2(col.size.x - 0.02f, 0.06f);
 
         gravityScale = ((-2f * maxJumpHeight) / (jumpTimeToApex * jumpTimeToApex)) / Physics2D.gravity.y;
         jumpVelocity = (2f * maxJumpHeight) / jumpTimeToApex;
@@ -157,6 +158,8 @@ public class PlayerMovement : MonoBehaviour
 
         controlsDisabledTimer = controlsDisabledTime;
         SetIconsColor();
+
+        Instantiate(spawnPointEffect, transform.position, Quaternion.identity);
     }
 
     void Update()
