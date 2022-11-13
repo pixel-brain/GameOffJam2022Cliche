@@ -8,6 +8,7 @@ public class Shoot : MonoBehaviour
     public float timeBtwnBursts;
     public float timeBtwnShots;
     public int burstCount;
+    public float indicatorScale;
     [Header("Bullet Properties")]
     public float bulletSpeed;
     public float bulletGravity;
@@ -44,7 +45,7 @@ public class Shoot : MonoBehaviour
             shotTimer = timeBtwnBursts;
         }
 
-        loadIndicator.localScale = Vector3.one * Mathf.Clamp(2.5f * (0.4f - (shotTimer / timeBtwnBursts)), 0, 1) * .7f;
+        loadIndicator.localScale = Vector3.one * Mathf.Clamp(2.5f * (0.4f - (shotTimer / timeBtwnBursts)), 0, 1) * indicatorScale;
 
         shotTimer -= Time.deltaTime;
     }

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8632653511465691362}
   - component: {fileID: 8632653511465691361}
   m_Layer: 0
-  m_Name: OnRailsMoveCannon
+  m_Name: CannonMoveOnRails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

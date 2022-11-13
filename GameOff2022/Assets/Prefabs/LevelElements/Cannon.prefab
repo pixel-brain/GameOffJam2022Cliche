@@ -103,6 +103,7 @@ MonoBehaviour:
   timeBtwnBursts: 1.5
   timeBtwnShots: 0.17
   burstCount: 3
+  indicatorScale: 0.71
   bulletSpeed: 5
   bulletGravity: 0
   shootParticles: {fileID: 2637173949203858413}
