@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     bool controlsOn;
     public float controlsDisabledTime;
     public Animator controlsFailAnim;
+    public TextMeshProUGUI controlStateText;
     public Color32 iconColor;
     public Color32 iconDisabledColor;
     float controlsDisabledTimer;
@@ -164,11 +166,32 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        // Controls disable
         if (controlsDisabledTimer < 0 && !controlsOn)
         {
             controlsOn = true;
             SetControlsOn();
         }
+        if (controlsDisabledTimer > 6)
+        {
+            controlStateText.text = "Please stand by...";
+            controlStateText.color = new Color32(255, 0, 0, 255);
+        }
+        else
+        {
+            if (controlsDisabledTimer > 0)
+            {
+                controlStateText.text = "Controls restored in " + Mathf.Floor(controlsDisabledTimer) + "...";
+                controlStateText.color = new Color32(255, 255, 0, 255);
+            }
+            else
+            {
+                controlStateText.text = "All controls online";
+                controlStateText.color = new Color32(0, 255, 0, 255);
+            }
+        }
+
+
         // Decrement timers
         jumpInputTimer -= Time.deltaTime;
         groundedTimer -= Time.deltaTime;
