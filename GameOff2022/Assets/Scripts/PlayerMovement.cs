@@ -147,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigi;
     BoxCollider2D col;
     InputMain controls;
+    bool controlsReady;
 
     // Start is called before the first frame update
     void Start()
@@ -181,7 +182,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (controlsDisabledTimer > 6)
         {
-            controlStateText.text = "Please stand by...";
+            controlStateText.text = "Controls offline...";
             controlStateTimerText.text = "";
             controlStateText.color = new Color32(255, 0, 0, 255);
         }
@@ -193,8 +194,11 @@ public class PlayerMovement : MonoBehaviour
                 controlStateTimerText.text = "" + Mathf.Floor(controlsDisabledTimer);
                 controlStateText.color = new Color32(255, 255, 0, 255);
             }
-            else
+            else if (!controlsReady)
             {
+                controlStateText.gameObject.GetComponent<Animator>().SetTrigger("Pop");
+                controlsReady = true;
+                controlStateText.gameObject.GetComponent<Animator>().SetTrigger("Pop");
                 controlStateText.text = "All controls online";
                 controlStateTimerText.text = "";
                 controlStateText.color = new Color32(0, 255, 0, 255);
