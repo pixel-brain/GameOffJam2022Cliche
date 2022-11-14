@@ -19901,6 +19901,8 @@ MonoBehaviour:
   noFall: 0
   controlsDisabledTime: 20
   controlsFailAnim: {fileID: 7909153576071127773}
+  controlStateText: {fileID: 0}
+  controlStateTimerText: {fileID: 0}
   iconColor:
     serializedVersion: 2
     rgba: 4294967295
@@ -19932,6 +19934,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   onewayLayerIndex: 7
+  bounceHeight: 5.15
   jumpCornerCorrectSize: {x: 0.29, y: 0.46}
   jumpSquashAmount: {x: 0.65, y: 1.3}
   jumpSquashDuration: 0.09

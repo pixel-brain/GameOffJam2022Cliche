@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public float controlsDisabledTime;
     public Animator controlsFailAnim;
     public TextMeshProUGUI controlStateText;
+    public TextMeshProUGUI controlStateTimerText;
     public Color32 iconColor;
     public Color32 iconDisabledColor;
     float controlsDisabledTimer;
@@ -74,6 +75,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask onewayCheckLayers;
     public int onewayLayerIndex;
     bool fallThroughHeld;
+
+    [Header("Bouncy Platform Variables")]
+    public float bounceHeight;
+    float bounceVelocity;
+    bool bouncing;
 
     [Header("Jump Corner Correction Variables")]
     public Vector2 jumpCornerCorrectSize = new Vector2(0.3f, 0.46f);
@@ -153,6 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
         gravityScale = ((-2f * maxJumpHeight) / (jumpTimeToApex * jumpTimeToApex)) / Physics2D.gravity.y;
         jumpVelocity = (2f * maxJumpHeight) / jumpTimeToApex;
+        bounceVelocity = jumpVelocity * (bounceHeight / maxJumpHeight);
         jumpCutFactor = minJumpHeight / maxJumpHeight;
 
         rigi.gravityScale = gravityScale;
@@ -175,6 +182,7 @@ public class PlayerMovement : MonoBehaviour
         if (controlsDisabledTimer > 6)
         {
             controlStateText.text = "Please stand by...";
+            controlStateTimerText.text = "";
             controlStateText.color = new Color32(255, 0, 0, 255);
         }
         else
@@ -182,11 +190,13 @@ public class PlayerMovement : MonoBehaviour
             if (controlsDisabledTimer > 0)
             {
                 controlStateText.text = "Controls restored in " + Mathf.Floor(controlsDisabledTimer) + "...";
+                controlStateTimerText.text = "" + Mathf.Floor(controlsDisabledTimer);
                 controlStateText.color = new Color32(255, 255, 0, 255);
             }
             else
             {
                 controlStateText.text = "All controls online";
+                controlStateTimerText.text = "";
                 controlStateText.color = new Color32(0, 255, 0, 255);
             }
         }
@@ -206,10 +216,33 @@ public class PlayerMovement : MonoBehaviour
         vel.y = Mathf.Clamp(vel.y, -terminalVelocity, Mathf.Infinity);
 
         // Check grounded
-        if (Physics2D.OverlapBox((Vector2)transform.position + groundedCheckPos, groundedCheckSize, 0, groundedCheckLayers) && Mathf.Abs(vel.y) < 0.2f)
+        Collider2D groundCol = Physics2D.OverlapBox((Vector2)transform.position + groundedCheckPos, groundedCheckSize, 0, groundedCheckLayers);
+        if (groundCol != null && Mathf.Abs(vel.y) < 0.2f)
         {
             groundedTimer = coyoteTime;
             hasDoubleJump = true;
+            // Bounce
+            if (groundCol.CompareTag("Bouncy"))
+            {
+                vel.y = bounceVelocity;
+                groundedTimer = 0;
+                bouncing = true;
+                jumpCornerCorrectionUsed = false;
+                fallSquashed = false;
+                // Effects
+                // Squash/stretch
+                spriteObject.transform.DOKill();
+                spriteObject.transform.DOScale(jumpSquashAmount, jumpSquashDuration).SetEase(jumpSquashEaseFunction);
+                // Particles
+                jumpParticles.Play();
+                //Spawn Double Jump Indicator
+                if (doubleJumpIndicator == null && canDoubleJump && !noDouble)
+                {
+                    doubleJumpIndicator = Instantiate(doubleJumpIndicatorPrefab, transform.position, Quaternion.identity);
+                    doubleJumpIndicator.transform.parent = transform;
+                    doubleJumpIndicator.transform.localPosition = new Vector3(0, doubleJumpIndicatorOffset);
+                }
+            }
         }
 
 
@@ -297,7 +330,7 @@ public class PlayerMovement : MonoBehaviour
                     // Particles
                     jumpParticles.Play();
                     // Spawn double jump indicator
-                    if (doubleJumpIndicator == null && canDoubleJump)
+                    if (doubleJumpIndicator == null && canDoubleJump && !noDouble)
                     {
                         doubleJumpIndicator = Instantiate(doubleJumpIndicatorPrefab, transform.position, Quaternion.identity);
                         doubleJumpIndicator.transform.parent = transform;
@@ -349,7 +382,7 @@ public class PlayerMovement : MonoBehaviour
         if (jumpReleased)
         {
             jumpReleased = false;
-            if (vel.y > 1f)
+            if (vel.y > 1f && !bouncing)
             {
                 fallSquashed = true;
                 // Effects
@@ -400,6 +433,7 @@ public class PlayerMovement : MonoBehaviour
         // Unsquash if falling (only when release jump was not called)
         if (vel.y < 1f && !fallSquashed)
         {
+            bouncing = false;
             fallSquashed = true;
             // Effects
             // Squash/stretch

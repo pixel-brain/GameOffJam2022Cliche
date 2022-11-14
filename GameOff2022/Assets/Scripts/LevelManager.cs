@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour
 {
     int current;
     public static bool created;
+    public Transform transitionTransform;
     Animator transitionAnim;
     bool waiting;
 
@@ -25,6 +26,10 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        transitionTransform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
+    }
 
     public void Next()
     {

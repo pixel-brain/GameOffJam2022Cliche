@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Deadly
   - DeadlyTiles
+  - Bouncy
   layers:
   - Default
   - TransparentFX
@@ -18,8 +19,8 @@ TagManager:
   - Player
   - Deadly
   - Bullet
-  - 
-  - 
+  - Patroller
+  - CameraBounds
   - 
   - 
   - 
