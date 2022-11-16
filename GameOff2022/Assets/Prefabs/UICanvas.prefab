@@ -169,9 +169,9 @@ RectTransform:
   m_Father: {fileID: 2741378228543534345}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 130, y: 24}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 130, y: -36}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2741378228382849941
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Please stand by...
+  m_text: Controls offline...
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e2d27b42f9df5e64f802689ca933c40c, type: 2}
   m_sharedMaterial: {fileID: -1412211653330788495, guid: e2d27b42f9df5e64f802689ca933c40c, type: 2}
