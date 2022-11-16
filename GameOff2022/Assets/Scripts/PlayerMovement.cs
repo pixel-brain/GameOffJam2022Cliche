@@ -147,11 +147,12 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rigi;
     BoxCollider2D col;
     InputMain controls;
-    bool controlsReady;
+    public static bool controlsReady;
 
     // Start is called before the first frame update
     void Start()
     {
+        controlsReady = false;
         rigi = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
 
@@ -180,7 +181,7 @@ public class PlayerMovement : MonoBehaviour
             controlsOn = true;
             SetControlsOn();
         }
-        if (controlsDisabledTimer > 6)
+        if (controlsDisabledTimer > 5)
         {
             controlStateText.text = "Controls offline...";
             controlStateTimerText.text = "";
@@ -190,8 +191,8 @@ public class PlayerMovement : MonoBehaviour
         {
             if (controlsDisabledTimer > 0)
             {
-                controlStateText.text = "Controls restored in " + Mathf.Floor(controlsDisabledTimer) + "...";
-                controlStateTimerText.text = "" + Mathf.Floor(controlsDisabledTimer);
+                controlStateText.text = "Controls restored in " + Mathf.Ceil(controlsDisabledTimer) + "...";
+                controlStateTimerText.text = "" + Mathf.Ceil(controlsDisabledTimer);
                 controlStateText.color = new Color32(255, 255, 0, 255);
             }
             else if (!controlsReady)
