@@ -6,6 +6,7 @@ using DG.Tweening;
 public class OnRailsMove : MonoBehaviour
 {
     public float moveTime;
+    public int startIndex;
     public Ease easingFunction;
     public LineRenderer lineRend;
     int currentIndex;
@@ -13,6 +14,7 @@ public class OnRailsMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        currentIndex = startIndex;
         Move();
     }
 

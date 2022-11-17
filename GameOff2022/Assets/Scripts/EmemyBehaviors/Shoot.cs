@@ -7,6 +7,7 @@ public class Shoot : MonoBehaviour
     [Header("Cannon Properties")]
     public float timeBtwnBursts;
     public float timeBtwnShots;
+    public float timeBeforeFirst;
     public int burstCount;
     public float indicatorScale;
     [Header("Bullet Properties")]
@@ -24,7 +25,7 @@ public class Shoot : MonoBehaviour
     void Start()
     {
         currentShot = burstCount;
-        shotTimer = timeBtwnBursts;
+        shotTimer = timeBeforeFirst;
     }
 
     // Update is called once per frame

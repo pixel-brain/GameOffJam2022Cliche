@@ -152,6 +152,7 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Physics2D.IgnoreLayerCollision(onewayLayerIndex, gameObject.layer, false);
         controlsReady = false;
         rigi = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
