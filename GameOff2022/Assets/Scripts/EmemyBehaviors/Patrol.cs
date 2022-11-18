@@ -27,7 +27,6 @@ public class Patrol : MonoBehaviour
         // Turn       
         if (!onGround || touchingWall)
         {
-            Debug.Log(!onGround);
             transform.localEulerAngles += new Vector3(0, 180, 0);
         }
         // Jump
