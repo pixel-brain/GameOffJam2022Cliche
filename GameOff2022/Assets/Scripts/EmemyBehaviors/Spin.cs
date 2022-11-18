@@ -17,15 +17,9 @@ public class Spin : MonoBehaviour
         Turn();
     }
 
-    void Update()
-    {
-        Debug.Log(transform.localEulerAngles.z);
-    }
-
     void Turn()
     {
-        float dist = Mathf.Abs(rotations[currentIndex] - transform.localEulerAngles.z);
-        transform.DORotate(new Vector3(0, 0, rotations[currentIndex]), dist * 0.005f * rotateSpeed).SetEase(easingFunction)
+        transform.DORotate(new Vector3(0, 0, rotations[currentIndex]), rotateSpeed).SetEase(easingFunction)
             .OnComplete(() =>
             {
                 Turn();
