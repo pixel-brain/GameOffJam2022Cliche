@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4590392935384799780}
   - component: {fileID: 4590392935384799781}
   - component: {fileID: 4590392935384799778}
+  - component: {fileID: 6918288326863877789}
   m_Layer: 0
   m_Name: BulletDestroyParticles
   m_TagString: Untagged
@@ -4870,3 +4871,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6918288326863877789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4590392935384799779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 360d9728243d2774280fd08f7efc139c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destroyTime: 0.3
+  destroyOnCollision: 0
+  destroyParticles: {fileID: 0}

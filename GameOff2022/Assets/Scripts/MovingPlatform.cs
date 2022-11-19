@@ -7,16 +7,18 @@ public class MovingPlatform : MonoBehaviour
 {
     public LineRenderer lineRend;
     public float moveTime;
+    public int startIndex;
     public Ease easingFunction;
     public bool sticky;
     int currentIndex;
     Rigidbody2D playerRigi;
     Vector2 prevPos;
-    public int touchedColliders;
+    int touchedColliders;
 
     // Start is called before the first frame update
     void Start()
     {
+        currentIndex = startIndex;
         Follow();
     }
 
