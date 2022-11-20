@@ -20009,7 +20009,7 @@ MonoBehaviour:
   fallGravityMultiplier: 1.55
   terminalVelocity: 55
   coyoteTime: 0.067
-  inputBufferTime: 0.085
+  inputBufferTime: 0.105
   groundedCheckLayers:
     serializedVersion: 2
     m_Bits: 192
