@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lineRend: {fileID: 3400184812447922790}
-  moveSpeed: 0.2
+  moveSpeed: 0.3
   rubberBandFactor: 0.63
   followX: 1
 --- !u!4 &2132608681214352030 stripped
