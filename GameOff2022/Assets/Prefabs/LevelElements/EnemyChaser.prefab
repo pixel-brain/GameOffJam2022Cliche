@@ -183,8 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 3.4
-  engageDist: 8
-  turnBackDist: 9
+  engageDist: 8.55
+  turnBackDist: 9.8
   lineRend: {fileID: 2918052441668007951}
 --- !u!58 &2918052440862408584
 CircleCollider2D:
