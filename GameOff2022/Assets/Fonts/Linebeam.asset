@@ -90,7 +90,7 @@ Material:
     - _VertexOffsetY: 0
     m_Colors:
     - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
-    - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
+    - _FaceColor: {r: 1.2252784, g: 1.80188, b: 7.315633, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &11400000
 MonoBehaviour:
@@ -104,9 +104,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
   m_Name: Linebeam
   m_EditorClassIdentifier: 
-  hashCode: 0
+  hashCode: 869606725
   material: {fileID: -6328215655502904239}
-  materialHashCode: 0
+  materialHashCode: -154236091
   m_Version: 1.1.0
   m_SourceFontFileGUID: bc41a734083ae334387d0c525357d9a6
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: bc41a734083ae334387d0c525357d9a6, type: 3}

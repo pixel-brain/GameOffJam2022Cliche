@@ -45,6 +45,13 @@ public class LevelManager : MonoBehaviour
 
         
     }
+
+    public void OpenLevel(int levelIndex)
+    {
+        current = levelIndex;
+        SceneManager.LoadScene(current);
+    }
+
     IEnumerator WaitForNext()
     {
         waiting = true;

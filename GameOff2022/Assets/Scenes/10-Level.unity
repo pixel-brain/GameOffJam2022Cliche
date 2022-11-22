@@ -3583,7 +3583,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1725074385626616351, guid: c11265ba1968cad46b204cd956cc48a7, type: 3}
       propertyPath: bulletSpeed
-      value: 2.5
+      value: 2.85
       objectReference: {fileID: 0}
     - target: {fileID: 1725074385626616351, guid: c11265ba1968cad46b204cd956cc48a7, type: 3}
       propertyPath: timeBtwnBursts
