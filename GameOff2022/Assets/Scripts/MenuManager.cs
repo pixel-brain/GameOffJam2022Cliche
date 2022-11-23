@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
     int xInput;
     int yInput;
 
-    void Selected()
+    public void Selected()
     {
         if (currentMenu == Menu.Main)
         {
