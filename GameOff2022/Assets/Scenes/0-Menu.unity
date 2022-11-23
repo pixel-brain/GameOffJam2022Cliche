@@ -836,7 +836,7 @@ MonoBehaviour:
   m_ActionsAsset: {fileID: -944628639613478452, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_PointAction: {fileID: -1654692200621890270, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_MoveAction: {fileID: -8784545083839296357, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
-  m_SubmitAction: {fileID: 392368643174621059, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
+  m_SubmitAction: {fileID: 0}
   m_CancelAction: {fileID: 7727032971491509709, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_LeftClickAction: {fileID: 3001919216989983466, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   m_MiddleClickAction: {fileID: -2185481485913320682, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
@@ -1732,7 +1732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 240}
+  m_AnchoredPosition: {x: 0, y: 280}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209684533
@@ -1761,13 +1761,18 @@ MonoBehaviour:
 
     Move: Arrow Keys or ASD
 
+    Pause:
+    Esc or P
+
 
     Gamepad
 
-    Jump:
-    A or B
+    Jump: A or B
 
-    Move: Left Stick or D-Pad'
+    Move: Left Stick or D-Pad
+
+    Pause:
+    Start or Select'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1794,8 +1799,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 65
-  m_fontSizeBase: 65
+  m_fontSize: 55
+  m_fontSizeBase: 55
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -2965,6 +2970,7 @@ MonoBehaviour:
   buttons:
   - {fileID: 1246651346}
   selector: {fileID: 505656320}
+  challengeUnlockNotice: {fileID: 0}
   rowSize: 1
   allowHorizontal: 0
 --- !u!1 &711702377
@@ -3087,6 +3093,7 @@ MonoBehaviour:
   - {fileID: 227811076}
   - {fileID: 767191634}
   selector: {fileID: 505656320}
+  challengeUnlockNotice: {fileID: 0}
   rowSize: 6
   allowHorizontal: 1
 --- !u!1 &767191633
@@ -4614,13 +4621,14 @@ GameObject:
   - component: {fileID: 1147466474}
   - component: {fileID: 1147466476}
   - component: {fileID: 1147466475}
+  - component: {fileID: 1147466477}
   m_Layer: 5
   m_Name: UnlockNotice
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1147466474
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4661,7 +4669,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bonus levels unlocked!
+  m_text: Challenge levels unlocked!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4779d3e522312ed49abbda49852f1b1f, type: 2}
   m_sharedMaterial: {fileID: -6328215655502904239, guid: 4779d3e522312ed49abbda49852f1b1f, type: 2}
@@ -4738,6 +4746,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1147466473}
   m_CullTransparentMesh: 1
+--- !u!95 &1147466477
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1147466473}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b87498a03df816e448254eec1744f749, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1182304010
 GameObject:
   m_ObjectHideFlags: 0
@@ -7140,7 +7168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 360}
+  m_AnchoredPosition: {x: 0, y: 335}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624909306
@@ -7163,7 +7191,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Controls Critical
+  m_text: 'Neon Square:
+
+    Resurgence'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4779d3e522312ed49abbda49852f1b1f, type: 2}
   m_sharedMaterial: {fileID: -6328215655502904239, guid: 4779d3e522312ed49abbda49852f1b1f, type: 2}
@@ -7190,8 +7220,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 200
-  m_fontSizeBase: 200
+  m_fontSize: 150
+  m_fontSizeBase: 150
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7345,6 +7375,7 @@ MonoBehaviour:
   - {fileID: 2000989460}
   - {fileID: 1762948496}
   selector: {fileID: 505656320}
+  challengeUnlockNotice: {fileID: 0}
   rowSize: 1
   allowHorizontal: 0
 --- !u!1 &1650662066
@@ -8790,6 +8821,7 @@ MonoBehaviour:
   buttons:
   - {fileID: 157536960}
   selector: {fileID: 505656320}
+  challengeUnlockNotice: {fileID: 0}
   rowSize: 1
   allowHorizontal: 0
 --- !u!1 &1929163820

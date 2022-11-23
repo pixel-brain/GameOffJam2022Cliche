@@ -621,6 +621,7 @@ public class PlayerMovement : MonoBehaviour
             if (ctx.ReadValueAsButton() && noFall)
                 PressedDisabledControl();
         };
+        controls.Gameplay.Pause.performed += ctx => GameObject.Find("LevelManager").GetComponent<LevelManager>().Pause();
 
     }
     void OnEnable()

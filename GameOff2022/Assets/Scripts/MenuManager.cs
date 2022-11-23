@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class MenuManager : MonoBehaviour
     public GameObject[] menus;
     public Transform[] buttons;
     public Transform selector;
+    public GameObject challengeUnlockNotice;
     public int rowSize;
     int selected;
     public bool allowHorizontal;
@@ -24,6 +26,7 @@ public class MenuManager : MonoBehaviour
 
     public void Selected()
     {
+        selector.GetComponent<Animator>().SetTrigger("Pop");
         if (currentMenu == Menu.Main)
         {
             OpenMenu(selected + 1);
@@ -41,7 +44,10 @@ public class MenuManager : MonoBehaviour
             else
             {
                 // Call level manager with build index
-                GameObject.Find("LevelManger").GetComponent<LevelManager>().OpenLevel(selected + 1);
+                if (selected < PlayerPrefs.GetInt("LevelsUnlocked"))
+                {
+                    GameObject.Find("LevelManager").GetComponent<LevelManager>().OpenLevel(selected + 1);
+                }
             }
         }
     }
@@ -67,8 +73,6 @@ public class MenuManager : MonoBehaviour
             }
         }
         selector.GetComponent<Animator>().SetTrigger("Pop");
-
-
     }
 
     void OpenMenu(int menuIndex)
@@ -78,6 +82,28 @@ public class MenuManager : MonoBehaviour
             menu.SetActive(false);
         }
         menus[menuIndex].SetActive(true);
+    }
+
+    void UnlockLevels()
+    {
+        if (currentMenu == Menu.Levels)
+        {
+            for (int i = 0; i < buttons.Length - 1; i++)
+            {
+                if (i < PlayerPrefs.GetInt("LevelsUnlocked"))
+                {
+                    buttons[i].GetComponent<Image>().color = new Color32(0, 0, 0, 130);
+                }
+                else
+                {
+                    buttons[i].GetComponent<Image>().color = new Color32(255, 0, 0, 130);
+                }
+            }
+        }
+        else if (currentMenu == Menu.Main && PlayerPrefs.GetInt("LevelsUnlocked") == 18 && challengeUnlockNotice != null)
+        {
+            challengeUnlockNotice.SetActive(true);
+        }
     }
 
 
@@ -93,7 +119,7 @@ public class MenuManager : MonoBehaviour
             if (allowHorizontal && xInput != (int)Mathf.Sign(ctx.ReadValue<float>())) 
             {
                 xInput = (int)Mathf.Sign(ctx.ReadValue<float>());
-                selected = ((selected + xInput) % buttons.Length + buttons.Length) % buttons.Length;
+                selected = Mathf.Clamp(selected + xInput, 0, buttons.Length - 1);
                 MoveSelectIcon();
             }
         };
@@ -103,15 +129,21 @@ public class MenuManager : MonoBehaviour
             if (yInput != (int)Mathf.Sign(ctx.ReadValue<float>()))
             {
                 yInput = -(int)Mathf.Sign(ctx.ReadValue<float>());
-                Debug.Log(yInput);
                 selected = Mathf.Clamp(selected + yInput * rowSize, 0, buttons.Length - 1);
                 MoveSelectIcon();
             }
         };
         controls.Menu.VerticalScroll.canceled += ctx => yInput = 0;
+
+        if (!PlayerPrefs.HasKey("LevelsUnlocked"))
+        {
+            PlayerPrefs.SetInt("LevelsUnlocked", 1);
+        }
     }
     void OnEnable()
     {
+        selected = 0;
+        UnlockLevels();
         controls.Menu.Enable();
         MoveSelectIcon();
     }

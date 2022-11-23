@@ -31,6 +31,12 @@ public class LevelManager : MonoBehaviour
         transitionTransform.position = new Vector3(Camera.main.transform.position.x, Camera.main.transform.position.y, 0);
     }
 
+    public void Pause()
+    {
+        current = 0;
+        SceneManager.LoadScene(current);
+    }
+
     public void Next()
     {
         if (!waiting)
@@ -39,6 +45,14 @@ public class LevelManager : MonoBehaviour
             if (current > SceneManager.sceneCountInBuildSettings - 1)
             {
                 current = 0;
+            }
+            if (PlayerPrefs.GetInt("LevelsUnlocked") < current)
+            {
+                PlayerPrefs.SetInt("LevelsUnlocked", current);
+                if (current > 11)
+                {
+                    PlayerPrefs.SetInt("LevelsUnlocked", 18);
+                }
             }
             StartCoroutine(WaitForNext());
         }
