@@ -179,7 +179,6 @@ public class PlayerMovement : MonoBehaviour
         // Controls disable
         if (controlsDisabledTimer < 0 && !controlsOn)
         {
-            controlsOn = true;
             SetControlsOn();
         }
         if (controlsDisabledTimer > 5)
@@ -548,6 +547,7 @@ public class PlayerMovement : MonoBehaviour
 
     void SetControlsOn()
     {
+        controlsOn = true;
         noLeft = false;
         noRight = false;
         noJump = false;
@@ -587,6 +587,21 @@ public class PlayerMovement : MonoBehaviour
     void PressedDisabledControl()
     {
         controlsFailAnim.SetTrigger("Show");
+    }
+
+    public void ActivateControl(int icon)
+    {
+        if (icon == 0)
+            noLeft = false;
+        else if (icon == 1)
+            noRight = false;
+        else if (icon == 2)
+            noJump = false;
+        else if (icon == 3)
+            noDouble = false;
+        else if (icon == 4)
+            SetControlsOn();
+        SetIconsColor();
     }
 
     /*

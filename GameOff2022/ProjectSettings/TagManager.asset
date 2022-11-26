@@ -7,6 +7,7 @@ TagManager:
   - Deadly
   - DeadlyTiles
   - Bouncy
+  - DestructableTiles
   layers:
   - Default
   - TransparentFX
