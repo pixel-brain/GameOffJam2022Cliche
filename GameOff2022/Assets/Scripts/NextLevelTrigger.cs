@@ -10,6 +10,7 @@ public class NextLevelTrigger : MonoBehaviour
         GameObject levelManager = GameObject.Find("LevelManager");
         if (collision.CompareTag("Player") && levelManager != null)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/LevelSFX/LevelFinish");
             triggeredParticles.Play();
             levelManager.GetComponent<LevelManager>().Next();
         }

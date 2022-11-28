@@ -212,6 +212,7 @@ public class PlayerMovement : MonoBehaviour
       
             else if (!controlsReady)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/LevelSFX/ControlRestored");
                 controlStateText.gameObject.GetComponent<Animator>().SetTrigger("Pop");
                 controlsReady = true;
                 controlStateText.gameObject.GetComponent<Animator>().SetTrigger("Pop");
