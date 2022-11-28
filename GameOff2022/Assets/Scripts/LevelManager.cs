@@ -37,7 +37,7 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene(current);
     }
 
-    public void Next()
+    public void Next(bool toMenu=false)
     {
         if (!waiting)
         {
@@ -49,10 +49,14 @@ public class LevelManager : MonoBehaviour
             if (PlayerPrefs.GetInt("LevelsUnlocked") < current)
             {
                 PlayerPrefs.SetInt("LevelsUnlocked", current);
-                if (current > 11)
+                if (current > 12)
                 {
                     PlayerPrefs.SetInt("LevelsUnlocked", 18);
                 }
+            }
+            if (toMenu)
+            {
+                current = 0;
             }
             StartCoroutine(WaitForNext());
         }

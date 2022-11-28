@@ -5,6 +5,7 @@ using UnityEngine;
 public class NextLevelTrigger : MonoBehaviour
 {
     public ParticleSystem triggeredParticles;
+    public bool toMenu;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject levelManager = GameObject.Find("LevelManager");
@@ -12,7 +13,7 @@ public class NextLevelTrigger : MonoBehaviour
         {
             FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/LevelSFX/LevelFinish");
             triggeredParticles.Play();
-            levelManager.GetComponent<LevelManager>().Next();
+            levelManager.GetComponent<LevelManager>().Next(toMenu);
         }
     }
 }
