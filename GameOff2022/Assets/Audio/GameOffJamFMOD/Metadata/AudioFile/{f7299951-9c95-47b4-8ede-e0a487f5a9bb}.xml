@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f7299951-9c95-47b4-8ede-e0a487f5a9bb}">
+		<property name="assetPath">
+			<value>Spawn_FX.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.2016326530612245</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8906a91-9fff-4d4b-8546-6bf771ff8e7a}</destination>
+		</relationship>
+	</object>
+</objects>

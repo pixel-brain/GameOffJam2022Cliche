@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void Die()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Die");
         camShakeScript.Shake(7f, 17f, true);
         ParticleSystem deathParticles = Instantiate(deathParticlesPrefab, transform.position, Quaternion.identity);
         DontDestroyOnLoad(deathParticles);

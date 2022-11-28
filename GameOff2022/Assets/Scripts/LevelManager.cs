@@ -89,6 +89,8 @@ public class LevelManager : MonoBehaviour
         yield return new WaitForSeconds(0.83f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         waiting = false;
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Spawn");
+
     }
 
 

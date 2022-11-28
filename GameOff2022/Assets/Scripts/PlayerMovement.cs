@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
+using FMODUnity;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -149,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
     InputMain controls;
     public static bool controlsReady;
 
+    private FMOD.Studio.EventInstance countdownSFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -191,10 +193,23 @@ public class PlayerMovement : MonoBehaviour
         {
             if (controlsDisabledTimer > 0)
             {
+                if (!IsPlaying(countdownSFX))
+                {
+                    countdownSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/LevelSFX/Countdown");
+                    countdownSFX.start();
+                    countdownSFX.release();
+                }
                 controlStateText.text = "Controls restored in " + Mathf.Ceil(controlsDisabledTimer) + "...";
                 controlStateTimerText.text = "" + Mathf.Ceil(controlsDisabledTimer);
                 controlStateText.color = new Color32(255, 255, 0, 255);
+                bool IsPlaying(FMOD.Studio.EventInstance instance)
+                {
+                    FMOD.Studio.PLAYBACK_STATE state;
+                    instance.getPlaybackState(out state);
+                    return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+                }
             }
+      
             else if (!controlsReady)
             {
                 controlStateText.gameObject.GetComponent<Animator>().SetTrigger("Pop");
@@ -322,6 +337,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!noJump)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Jump");
                     jumpCornerCorrectionUsed = false;
                     fallSquashed = false;
                     jumpInputTimer = 0;
@@ -354,6 +370,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (!noDouble)
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/DoubleJump");
                     jumpCornerCorrectionUsed = false;
                     fallSquashed = false;
                     jumpInputTimer = 0;
@@ -465,6 +482,7 @@ public class PlayerMovement : MonoBehaviour
         // Squash when hitting the ground
         if (!wasGrounded && groundedTimer > 0f)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Fall");
             // Effects
             float impactFactor = Mathf.Lerp(0, 1, -prevPrevYVel / terminalVelocity);
             spriteObject.transform.DOKill();

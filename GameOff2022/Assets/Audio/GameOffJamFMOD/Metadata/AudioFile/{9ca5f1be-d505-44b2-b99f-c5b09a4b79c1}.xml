@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{9ca5f1be-d505-44b2-b99f-c5b09a4b79c1}">
+		<property name="assetPath">
+			<value>Laser_Gun_FX.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>18.886530612244897</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8906a91-9fff-4d4b-8546-6bf771ff8e7a}</destination>
+		</relationship>
+	</object>
+</objects>

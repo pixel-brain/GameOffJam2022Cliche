@@ -212,5 +212,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveTime: 0.5
+  startIndex: 0
   easingFunction: 7
   lineRend: {fileID: 917320066585272940}
