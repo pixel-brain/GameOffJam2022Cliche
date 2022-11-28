@@ -53,7 +53,7 @@
 			<destination>{b0f09652-d3fe-4c4e-9e3c-10b3434d0fde}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{39439a1d-450e-44af-9268-2f160524ca16}</destination>
+			<destination>{f62b29da-7c67-4534-ad2d-fe6400a6d590}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{071d8bf8-c6e1-4d4b-9b3b-fd42d9f7b3be}" />
@@ -122,7 +122,6 @@
 	<object class="MixerBusEffectChain" id="{59ec1593-0a6e-4b57-b4ed-8085f4e6d31a}">
 		<relationship name="effects">
 			<destination>{6e32fcf1-83d3-427f-babf-880d7c14d191}</destination>
-			<destination>{96d3c9c9-871b-484c-bd2f-56b79024638c}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{86ccf837-6325-40f5-ba83-f07ace2da827}" />
@@ -138,18 +137,11 @@
 	<object class="MixerBusEffectChain" id="{44f0a9d5-729e-4f63-8f12-46fb03de9153}">
 		<relationship name="effects">
 			<destination>{a680d55a-f647-4496-a0ee-af409801b0b4}</destination>
+			<destination>{b4d9833e-c85f-464f-a16a-e79b497be42b}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{6412bf85-d2ca-422a-8545-2901788f3ab9}" />
 	<object class="MixerBusFader" id="{6e32fcf1-83d3-427f-babf-880d7c14d191}" />
-	<object class="PitchShifterEffect" id="{96d3c9c9-871b-484c-bd2f-56b79024638c}">
-		<property name="pitch">
-			<value>1</value>
-		</property>
-		<relationship name="modulators">
-			<destination>{ec8fc97c-9461-485c-9efa-ae57dddd5681}</destination>
-		</relationship>
-	</object>
 	<object class="AutomationPoint" id="{d57b3564-36b5-49db-9d32-a3c4fbf5e2c3}">
 		<property name="position">
 			<value>0</value>
@@ -170,7 +162,15 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{a680d55a-f647-4496-a0ee-af409801b0b4}" />
-	<object class="RandomizerModulator" id="{ec8fc97c-9461-485c-9efa-ae57dddd5681}">
+	<object class="PitchShifterEffect" id="{b4d9833e-c85f-464f-a16a-e79b497be42b}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{41054765-f54c-4cdc-a289-5d977821d59f}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{41054765-f54c-4cdc-a289-5d977821d59f}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>

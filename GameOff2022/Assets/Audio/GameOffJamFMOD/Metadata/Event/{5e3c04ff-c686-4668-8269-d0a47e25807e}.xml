@@ -122,7 +122,6 @@
 	<object class="MixerBusEffectChain" id="{d50a5346-8ae4-4d57-92cc-76dd6c1cc422}">
 		<relationship name="effects">
 			<destination>{a80beb84-ba68-4c7b-af1b-73b7f689a835}</destination>
-			<destination>{b50f15b5-f87a-4656-927d-0c9707f073ee}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{bcca71b2-162f-488d-b249-b1d1f8c9a8fd}" />
@@ -138,21 +137,11 @@
 	<object class="MixerBusEffectChain" id="{fa9c5b06-c3bf-44a5-8a7c-d281407f71eb}">
 		<relationship name="effects">
 			<destination>{e847f703-f474-4bb5-a755-2ea1a4c9f8f0}</destination>
+			<destination>{6bfbfb66-1ddd-4da2-964e-9c5791855ef7}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7b892be0-6e4d-4c19-bc8b-23af5bb44ec2}" />
 	<object class="MixerBusFader" id="{a80beb84-ba68-4c7b-af1b-73b7f689a835}" />
-	<object class="PitchShifterEffect" id="{b50f15b5-f87a-4656-927d-0c9707f073ee}">
-		<property name="pitch">
-			<value>1.19999993</value>
-		</property>
-		<property name="overlap">
-			<value>1</value>
-		</property>
-		<relationship name="modulators">
-			<destination>{13202ef8-6ed5-474e-8acc-2df31c9d7792}</destination>
-		</relationship>
-	</object>
 	<object class="AutomationPoint" id="{101ad2f3-abc2-43c2-aa66-8854e739523e}">
 		<property name="position">
 			<value>0</value>
@@ -173,7 +162,18 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{e847f703-f474-4bb5-a755-2ea1a4c9f8f0}" />
-	<object class="RandomizerModulator" id="{13202ef8-6ed5-474e-8acc-2df31c9d7792}">
+	<object class="PitchShifterEffect" id="{6bfbfb66-1ddd-4da2-964e-9c5791855ef7}">
+		<property name="pitch">
+			<value>1.19999993</value>
+		</property>
+		<property name="overlap">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{0a42c1b8-d87f-415c-8f34-2bace0d2a888}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{0a42c1b8-d87f-415c-8f34-2bace0d2a888}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>

@@ -122,7 +122,6 @@
 	<object class="MixerBusEffectChain" id="{cf9393f4-74c0-48f2-89a2-95698c67fd04}">
 		<relationship name="effects">
 			<destination>{1c5f4453-8c47-494b-a8f6-a4217a42bbe5}</destination>
-			<destination>{3bed148f-c014-4ad3-84c8-53f48e687eee}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5ecd8d14-ec0a-4771-a3ea-0f7bbc8c58d7}" />
@@ -138,21 +137,11 @@
 	<object class="MixerBusEffectChain" id="{fd978906-6e5e-4a68-ac94-0f30baa436e5}">
 		<relationship name="effects">
 			<destination>{8dbfef2f-9736-4e43-a75c-c285bfc68986}</destination>
+			<destination>{efad24bc-67fc-40c3-8161-4fe3319704c1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5f6db980-5346-40a8-bac2-11e76555a7cd}" />
 	<object class="MixerBusFader" id="{1c5f4453-8c47-494b-a8f6-a4217a42bbe5}" />
-	<object class="PitchShifterEffect" id="{3bed148f-c014-4ad3-84c8-53f48e687eee}">
-		<property name="pitch">
-			<value>1</value>
-		</property>
-		<property name="overlap">
-			<value>1</value>
-		</property>
-		<relationship name="modulators">
-			<destination>{26a21645-5384-4459-beb1-01df626e6fdb}</destination>
-		</relationship>
-	</object>
 	<object class="AutomationPoint" id="{15efa0a1-118e-4395-ba0d-7135fc00ef8f}">
 		<property name="position">
 			<value>0</value>
@@ -173,7 +162,18 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{8dbfef2f-9736-4e43-a75c-c285bfc68986}" />
-	<object class="RandomizerModulator" id="{26a21645-5384-4459-beb1-01df626e6fdb}">
+	<object class="PitchShifterEffect" id="{efad24bc-67fc-40c3-8161-4fe3319704c1}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+		<property name="overlap">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{838393bd-b2fc-433a-a49c-a5f14730ce2c}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{838393bd-b2fc-433a-a49c-a5f14730ce2c}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>

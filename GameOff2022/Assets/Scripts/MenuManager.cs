@@ -46,6 +46,7 @@ public class MenuManager : MonoBehaviour
                 // Call level manager with build index
                 if (selected < PlayerPrefs.GetInt("LevelsUnlocked"))
                 {
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Menu/Press");
                     GameObject.Find("LevelManager").GetComponent<LevelManager>().OpenLevel(selected + 1);
                 }
             }
@@ -73,6 +74,7 @@ public class MenuManager : MonoBehaviour
             }
         }
         selector.GetComponent<Animator>().SetTrigger("Pop");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Menu/Scroll");
     }
 
     void OpenMenu(int menuIndex)
@@ -82,6 +84,7 @@ public class MenuManager : MonoBehaviour
             menu.SetActive(false);
         }
         menus[menuIndex].SetActive(true);
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Menu/Press");
     }
 
     void UnlockLevels()
@@ -114,6 +117,7 @@ public class MenuManager : MonoBehaviour
         controls = new InputMain();
         // Select Press
         controls.Menu.Select.performed += ctx => Selected();
+ 
         // Scroll Horizontal
         controls.Menu.HorizontalScroll.performed += ctx => {
             if (allowHorizontal && xInput != (int)Mathf.Sign(ctx.ReadValue<float>())) 

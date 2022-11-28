@@ -53,7 +53,7 @@
 			<destination>{7bbefdcc-fd43-4e75-9758-9a8cbd803620}</destination>
 		</relationship>
 		<relationship name="output">
-			<destination>{39439a1d-450e-44af-9268-2f160524ca16}</destination>
+			<destination>{f62b29da-7c67-4534-ad2d-fe6400a6d590}</destination>
 		</relationship>
 	</object>
 	<object class="EventAutomatableProperties" id="{2990f369-fa72-427b-b720-0a436d97fa46}" />
@@ -122,9 +122,7 @@
 	<object class="MixerBusEffectChain" id="{fefacd2c-6493-4446-91dc-8bf5b8ea09d2}">
 		<relationship name="effects">
 			<destination>{438f2643-9aa2-41cf-99a5-f8d9c4857588}</destination>
-			<destination>{b6f3d5ec-1fda-4863-82bd-51288700862e}</destination>
-			<destination>{c6de8303-8094-47e3-a51b-29f513d06f1b}</destination>
-			<destination>{e2357388-d970-44ec-834b-fc25178a670c}</destination>
+			<destination>{a8a9178c-16af-4940-81c7-5d1b9ebf6ca1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{b83c826c-3481-4f38-b018-3e8f377c5fc8}" />
@@ -140,32 +138,13 @@
 	<object class="MixerBusEffectChain" id="{81baa466-ba65-4a68-bd48-34bb3e72f5b4}">
 		<relationship name="effects">
 			<destination>{925757ad-90c2-46b9-bfe6-1fb1b54dc809}</destination>
+			<destination>{d9b5db10-3627-4d9d-b731-d9f554a1e4f7}</destination>
+			<destination>{107c84f5-31e2-4871-be91-7e7e9107cda4}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{f8af4a22-6db8-4c3e-a3a1-db08824c21b7}" />
 	<object class="MixerBusFader" id="{438f2643-9aa2-41cf-99a5-f8d9c4857588}" />
-	<object class="PitchShifterEffect" id="{b6f3d5ec-1fda-4863-82bd-51288700862e}">
-		<property name="pitch">
-			<value>1</value>
-		</property>
-		<relationship name="modulators">
-			<destination>{8425d332-4e21-41a2-86c7-77ccbadb0194}</destination>
-		</relationship>
-	</object>
-	<object class="FlangerEffect" id="{c6de8303-8094-47e3-a51b-29f513d06f1b}">
-		<property name="delay">
-			<value>0.189999998</value>
-		</property>
-		<property name="mix">
-			<value>24</value>
-		</property>
-		<relationship name="modulators">
-			<destination>{4a4ee2e1-7f1f-4e07-a45c-f266ddebf554}</destination>
-			<destination>{e8ae383e-7f0e-40b1-9793-9aa7cd5e91be}</destination>
-			<destination>{f2a2aec6-2ae1-4ff1-b82f-c01057797de0}</destination>
-		</relationship>
-	</object>
-	<object class="SpatialiserEffect" id="{e2357388-d970-44ec-834b-fc25178a670c}" />
+	<object class="SpatialiserEffect" id="{a8a9178c-16af-4940-81c7-5d1b9ebf6ca1}" />
 	<object class="AutomationPoint" id="{405d2fc8-2477-481c-9717-bda47710fdd1}">
 		<property name="position">
 			<value>1</value>
@@ -186,7 +165,28 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{925757ad-90c2-46b9-bfe6-1fb1b54dc809}" />
-	<object class="RandomizerModulator" id="{8425d332-4e21-41a2-86c7-77ccbadb0194}">
+	<object class="PitchShifterEffect" id="{d9b5db10-3627-4d9d-b731-d9f554a1e4f7}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{089370bf-14bc-4a81-8291-337237f3c6ce}</destination>
+		</relationship>
+	</object>
+	<object class="FlangerEffect" id="{107c84f5-31e2-4871-be91-7e7e9107cda4}">
+		<property name="delay">
+			<value>0.189999998</value>
+		</property>
+		<property name="mix">
+			<value>24</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{18f6845c-dbd4-4bd7-8724-ed3a9a5e63f3}</destination>
+			<destination>{9106bae4-edc9-40ce-babd-d33b7668ee4c}</destination>
+			<destination>{b64eeb09-ed64-46ef-bf30-007fcde24b6b}</destination>
+		</relationship>
+	</object>
+	<object class="RandomizerModulator" id="{089370bf-14bc-4a81-8291-337237f3c6ce}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>pitch</value>
 		</property>
@@ -194,7 +194,7 @@
 			<value>15.5</value>
 		</property>
 	</object>
-	<object class="RandomizerModulator" id="{4a4ee2e1-7f1f-4e07-a45c-f266ddebf554}">
+	<object class="RandomizerModulator" id="{18f6845c-dbd4-4bd7-8724-ed3a9a5e63f3}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>rate</value>
 		</property>
@@ -202,7 +202,7 @@
 			<value>49</value>
 		</property>
 	</object>
-	<object class="RandomizerModulator" id="{e8ae383e-7f0e-40b1-9793-9aa7cd5e91be}">
+	<object class="RandomizerModulator" id="{9106bae4-edc9-40ce-babd-d33b7668ee4c}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>delay</value>
 		</property>
@@ -210,7 +210,7 @@
 			<value>100</value>
 		</property>
 	</object>
-	<object class="RandomizerModulator" id="{f2a2aec6-2ae1-4ff1-b82f-c01057797de0}">
+	<object class="RandomizerModulator" id="{b64eeb09-ed64-46ef-bf30-007fcde24b6b}">
 		<property name="nameOfPropertyBeingModulated">
 			<value>mix</value>
 		</property>

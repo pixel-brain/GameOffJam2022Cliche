@@ -245,6 +245,7 @@ public class PlayerMovement : MonoBehaviour
             // Bounce
             if (groundCol.CompareTag("Bouncy"))
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/LevelSFX/Bouncy");
                 vel.y = bounceVelocity;
                 groundedTimer = 0;
                 bouncing = true;

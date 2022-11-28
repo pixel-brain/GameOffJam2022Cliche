@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{f589afb6-0313-41d6-9d23-45ddc29d9038}">
+		<property name="assetPath">
+			<value>Bounce_Platforn_FX.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>2.27265306122449</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8906a91-9fff-4d4b-8546-6bf771ff8e7a}</destination>
+		</relationship>
+	</object>
+</objects>
