@@ -90,11 +90,14 @@
 	<object class="MixerBusPanner" id="{7bbefdcc-fd43-4e75-9758-9a8cbd803620}" />
 	<object class="SingleSound" id="{13ca9a15-3bb0-44cd-8c99-294949813b57}">
 		<property name="length">
-			<value>9.5887966220971173</value>
+			<value>1.2000000000000002</value>
 		</property>
 		<property name="timelockedOffset">
 			<value>9.2977339901477798</value>
 		</property>
+		<relationship name="fadeOutCurve">
+			<destination>{42b2ac05-cff5-4926-8e91-c33a3be264fd}</destination>
+		</relationship>
 		<relationship name="audioFile">
 			<destination>{308ff626-dfbc-47e8-82ef-227e775ba476}</destination>
 		</relationship>
@@ -126,6 +129,14 @@
 	</object>
 	<object class="MixerBusPanner" id="{b83c826c-3481-4f38-b018-3e8f377c5fc8}" />
 	<object class="MixerBusFader" id="{8b446de6-887f-4d5b-b8e1-aefa04e8c6ee}" />
+	<object class="FadeCurve" id="{42b2ac05-cff5-4926-8e91-c33a3be264fd}">
+		<relationship name="startPoint">
+			<destination>{405d2fc8-2477-481c-9717-bda47710fdd1}</destination>
+		</relationship>
+		<relationship name="endPoint">
+			<destination>{9cde8d7e-bf71-4d23-86a1-3e2527360946}</destination>
+		</relationship>
+	</object>
 	<object class="MixerBusEffectChain" id="{81baa466-ba65-4a68-bd48-34bb3e72f5b4}">
 		<relationship name="effects">
 			<destination>{925757ad-90c2-46b9-bfe6-1fb1b54dc809}</destination>
@@ -155,6 +166,25 @@
 		</relationship>
 	</object>
 	<object class="SpatialiserEffect" id="{e2357388-d970-44ec-834b-fc25178a670c}" />
+	<object class="AutomationPoint" id="{405d2fc8-2477-481c-9717-bda47710fdd1}">
+		<property name="position">
+			<value>1</value>
+		</property>
+		<property name="value">
+			<value>1</value>
+		</property>
+		<property name="curveShape">
+			<value>0.25471893</value>
+		</property>
+	</object>
+	<object class="AutomationPoint" id="{9cde8d7e-bf71-4d23-86a1-3e2527360946}">
+		<property name="position">
+			<value>1.2000000000000002</value>
+		</property>
+		<property name="value">
+			<value>0</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{925757ad-90c2-46b9-bfe6-1fb1b54dc809}" />
 	<object class="RandomizerModulator" id="{8425d332-4e21-41a2-86c7-77ccbadb0194}">
 		<property name="nameOfPropertyBeingModulated">

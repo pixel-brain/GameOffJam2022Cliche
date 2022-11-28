@@ -433,7 +433,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 529652136}
+--- !u!1 &529652136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7032996209478540597, guid: 2159ca406ae9e254eb6c8535e855542b, type: 3}
+  m_PrefabInstance: {fileID: 403096108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &610088765
 GameObject:
   m_ObjectHideFlags: 3

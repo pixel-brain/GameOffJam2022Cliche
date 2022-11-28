@@ -12,15 +12,18 @@ public class Laser : MonoBehaviour
 
     private void Start()
     {
-        laserSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Enemies/Laser");
-        laserSFX.start();
+
+            laserSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Enemies/Laser");
+            laserSFX.start();
+
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        laserSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        //laserSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+        FMODUnity.RuntimeManager.AttachInstanceToGameObject(laserSFX, gameObject.transform);
         RaycastHit2D hit = Physics2D.Raycast(firePoint.position, transform.right, Mathf.Infinity, hitLayers);
         if (hit.collider != null)
         {
@@ -34,4 +37,10 @@ public class Laser : MonoBehaviour
             }
         }
     }
+    private void OnDestroy()
+    {
+        laserSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        laserSFX.release();
+    }
+
 }

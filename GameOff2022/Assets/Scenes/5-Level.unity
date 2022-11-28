@@ -517,6 +517,11 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6975686097592525451, guid: 2159ca406ae9e254eb6c8535e855542b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 2159ca406ae9e254eb6c8535e855542b, type: 3}
+--- !u!1 &403096109 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7032996209478540597, guid: 2159ca406ae9e254eb6c8535e855542b, type: 3}
+  m_PrefabInstance: {fileID: 403096108}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &491391937
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -750,7 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c6556701af9e04380698b89f691b6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attenuationObject: {fileID: 0}
+  attenuationObject: {fileID: 403096109}
 --- !u!1001 &526016929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8545,11 +8550,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 349721163283088852, guid: e02d84b2ef870104bb66e4b83a9c91cf, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[34].m_RefCount
-      value: 54
+      value: 53
       objectReference: {fileID: 0}
     - target: {fileID: 349721163283088852, guid: e02d84b2ef870104bb66e4b83a9c91cf, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[35].m_RefCount
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 349721163283088852, guid: e02d84b2ef870104bb66e4b83a9c91cf, type: 3}
       propertyPath: m_TileSpriteArray.Array.data[36].m_RefCount
@@ -10477,7 +10482,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 349721163283088852, guid: e02d84b2ef870104bb66e4b83a9c91cf, type: 3}
       propertyPath: m_Tiles.Array.data[475].second.m_TileSpriteIndex
-      value: 34
+      value: 35
       objectReference: {fileID: 0}
     - target: {fileID: 349721163283088852, guid: e02d84b2ef870104bb66e4b83a9c91cf, type: 3}
       propertyPath: m_Tiles.Array.data[476].second.m_TileSpriteIndex
