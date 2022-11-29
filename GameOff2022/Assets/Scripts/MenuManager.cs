@@ -29,7 +29,14 @@ public class MenuManager : MonoBehaviour
         selector.GetComponent<Animator>().SetTrigger("Pop");
         if (currentMenu == Menu.Main)
         {
-            OpenMenu(selected + 1);
+            if (selected + 1 > menus.Length - 1)
+            {
+                Application.Quit();
+            }
+            else
+            {
+                OpenMenu(selected + 1);
+            }
         }
         else if (currentMenu == Menu.Credits || currentMenu == Menu.Controls)
         {
@@ -103,7 +110,7 @@ public class MenuManager : MonoBehaviour
                 }
             }
         }
-        else if (currentMenu == Menu.Main && PlayerPrefs.GetInt("LevelsUnlocked") == 18 && challengeUnlockNotice != null)
+        else if (currentMenu == Menu.Main && PlayerPrefs.GetInt("LevelsUnlocked") == 17 && challengeUnlockNotice != null)
         {
             challengeUnlockNotice.SetActive(true);
         }

@@ -49,9 +49,9 @@ public class LevelManager : MonoBehaviour
             if (PlayerPrefs.GetInt("LevelsUnlocked") < current)
             {
                 PlayerPrefs.SetInt("LevelsUnlocked", current);
-                if (current > 12)
+                if (current > 13)
                 {
-                    PlayerPrefs.SetInt("LevelsUnlocked", 18);
+                    PlayerPrefs.SetInt("LevelsUnlocked", 17);
                 }
             }
             if (toMenu)
