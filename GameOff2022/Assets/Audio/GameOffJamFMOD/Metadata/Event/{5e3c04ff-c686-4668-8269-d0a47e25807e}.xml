@@ -138,6 +138,7 @@
 		<relationship name="effects">
 			<destination>{e847f703-f474-4bb5-a755-2ea1a4c9f8f0}</destination>
 			<destination>{6bfbfb66-1ddd-4da2-964e-9c5791855ef7}</destination>
+			<destination>{33757f3c-a777-41f4-a46f-6daf5283ef7e}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7b892be0-6e4d-4c19-bc8b-23af5bb44ec2}" />
@@ -172,6 +173,17 @@
 		<relationship name="modulators">
 			<destination>{0a42c1b8-d87f-415c-8f34-2bace0d2a888}</destination>
 		</relationship>
+	</object>
+	<object class="MultibandEqEffect" id="{33757f3c-a777-41f4-a46f-6daf5283ef7e}">
+		<property name="filterTypeA">
+			<value>7</value>
+		</property>
+		<property name="frequencyA">
+			<value>2664.34229</value>
+		</property>
+		<property name="gainA">
+			<value>-13.965517</value>
+		</property>
 	</object>
 	<object class="RandomizerModulator" id="{0a42c1b8-d87f-415c-8f34-2bace0d2a888}">
 		<property name="nameOfPropertyBeingModulated">

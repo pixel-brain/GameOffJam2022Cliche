@@ -138,6 +138,7 @@
 		<relationship name="effects">
 			<destination>{8dbfef2f-9736-4e43-a75c-c285bfc68986}</destination>
 			<destination>{efad24bc-67fc-40c3-8161-4fe3319704c1}</destination>
+			<destination>{170eccdb-d780-40bc-839e-52439d923c54}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{5f6db980-5346-40a8-bac2-11e76555a7cd}" />
@@ -164,7 +165,7 @@
 	<object class="MixerBusFader" id="{8dbfef2f-9736-4e43-a75c-c285bfc68986}" />
 	<object class="PitchShifterEffect" id="{efad24bc-67fc-40c3-8161-4fe3319704c1}">
 		<property name="pitch">
-			<value>1</value>
+			<value>0.799999952</value>
 		</property>
 		<property name="overlap">
 			<value>1</value>
@@ -172,6 +173,17 @@
 		<relationship name="modulators">
 			<destination>{838393bd-b2fc-433a-a49c-a5f14730ce2c}</destination>
 		</relationship>
+	</object>
+	<object class="MultibandEqEffect" id="{170eccdb-d780-40bc-839e-52439d923c54}">
+		<property name="filterTypeA">
+			<value>8</value>
+		</property>
+		<property name="frequencyA">
+			<value>599.403687</value>
+		</property>
+		<property name="gainA">
+			<value>-10.8620682</value>
+		</property>
 	</object>
 	<object class="RandomizerModulator" id="{838393bd-b2fc-433a-a49c-a5f14730ce2c}">
 		<property name="nameOfPropertyBeingModulated">
