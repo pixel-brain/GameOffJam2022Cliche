@@ -31,6 +31,7 @@ public class Firework : MonoBehaviour
             // Blast
             if (rigi.position.y > upDist + triggeredYPos || rigi.position.y > maxHeight)
             {
+                FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/LevelSFX/FireworksBoom", gameObject);
                 Instantiate(blastParticlesPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }

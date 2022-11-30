@@ -8,7 +8,7 @@ public class Laser : MonoBehaviour
     public LayerMask hitLayers;
     public Transform firePoint;
     public Transform hitPoint;
-    private FMOD.Studio.EventInstance laserSFX;
+    public FMOD.Studio.EventInstance laserSFX;
     private FMOD.Studio.EventInstance laserSFXhit;
 
     private void Start()
@@ -42,7 +42,7 @@ public class Laser : MonoBehaviour
             }
         }
     }
-    private void OnDestroy()
+    private void OnDisable()
     {
         laserSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         laserSFX.release();

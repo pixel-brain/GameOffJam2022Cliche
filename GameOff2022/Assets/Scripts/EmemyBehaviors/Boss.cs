@@ -54,9 +54,12 @@ public class Boss : MonoBehaviour
     public int currentMove;
     Vector2 startPos;
 
+    private FMOD.Studio.EventInstance bossShootSFX;
+
     // Start is called before the first frame update
     void Start()
     {
+        
         startPos = transform.position;
         stunCountdown = 2;
         Setup();
@@ -69,6 +72,8 @@ public class Boss : MonoBehaviour
         // Return to start pos
         if (currentMove == 0)
         {
+            
+
             transform.position = Vector2.MoveTowards(transform.position, startPos, Time.deltaTime * returnToStartSpeed);
         }
         // Shoot bullets
@@ -76,6 +81,7 @@ public class Boss : MonoBehaviour
         {
             if (shootTimer < 0)
             {
+                FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Enemies/Gunshot", gameObject);
                 shootTimer = timeBtwnShots;
                 GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.Euler(new Vector3(0, 0, Random.Range(0, 360))));
                 bullet.GetComponent<Rigidbody2D>().velocity = bullet.transform.right * bulletSpeed;
@@ -163,6 +169,7 @@ public class Boss : MonoBehaviour
 
     IEnumerator NextMove()
     {
+        
         // Get Random move
         int nextMove = availableMoves[Random.Range(0, availableMoves.Count)];
 
@@ -176,6 +183,7 @@ public class Boss : MonoBehaviour
         yield return new WaitForSeconds(moveDuration[currentMove - 1]);
         iconRend.sprite = null;
         currentMove = 0;
+  
 
         // Setup for next move
         Setup();
