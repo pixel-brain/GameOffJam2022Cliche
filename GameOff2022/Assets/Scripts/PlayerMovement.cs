@@ -305,6 +305,7 @@ public class PlayerMovement : MonoBehaviour
             bool onOneWay = false;
             if (fallThroughHeld && groundedTimer > 0f && !noFall)
             {
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Underjump");
                 // Handle Fall through Corner Correction
                 bool onewayOuterRight = Physics2D.Raycast(transform.position + new Vector3(col.size.x / 2f, -col.size.y / 2f), Vector2.down, 0.05f, onewayCheckLayers);
                 bool onewayOuterLeft = Physics2D.Raycast(transform.position + new Vector3(-col.size.x / 2f, -col.size.y / 2f), Vector2.down, 0.05f, onewayCheckLayers);
@@ -654,7 +655,7 @@ public class PlayerMovement : MonoBehaviour
         controls.Gameplay.Move.performed += ctx => move = Mathf.Sign(ctx.ReadValue<float>());
         controls.Gameplay.Move.canceled += ctx => move = 0f;
         // Fall through platform
-        controls.Gameplay.FallThrough.performed += ctx => {
+        controls.Gameplay.FallThrough.performed += ctx => {          
             fallThroughHeld = ctx.ReadValueAsButton();
             if (ctx.ReadValueAsButton() && noFall)
                 PressedDisabledControl();
@@ -669,6 +670,8 @@ public class PlayerMovement : MonoBehaviour
 
     void OnDisable()
     {
+        countdownSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        countdownSFX.release();
         controls.Gameplay.Disable();
     }
 }

@@ -24,6 +24,7 @@ public class StealIcon : MonoBehaviour
     {
         if (collision.transform.CompareTag("Player") && done == false)
         {
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Steal");
             GameObject boss = GameObject.Find("Boss");
             if (boss != null)
             {

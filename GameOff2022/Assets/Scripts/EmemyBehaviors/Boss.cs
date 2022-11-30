@@ -55,6 +55,8 @@ public class Boss : MonoBehaviour
     Vector2 startPos;
 
     private FMOD.Studio.EventInstance bossShootSFX;
+    private FMOD.Studio.EventInstance bossTargetSFX;
+    private FMOD.Studio.EventInstance bossSpinSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -110,13 +112,23 @@ public class Boss : MonoBehaviour
             target.gameObject.SetActive(true);
             if (lockTimer > 0)
             {
+                if (!IsPlaying(bossTargetSFX))
+                {
+                    bossTargetSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Enemies/BossAim");
+                    bossTargetSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+                    bossTargetSFX.start();
+                    bossTargetSFX.release();
+                }
                 target.position = Vector2.MoveTowards(target.position, player.position, Time.deltaTime * targetMoveSpeed);
             }
             else
             {
+                bossTargetSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                bossTargetSFX.release();
                 transform.position = Vector2.MoveTowards(transform.position, target.position, Time.deltaTime * targetStrikeSpeed);
             }
             lockTimer -= Time.deltaTime;
+            
         }
         // Zigzag
         else if (currentMove == 5)
@@ -155,6 +167,7 @@ public class Boss : MonoBehaviour
 
     void Die()
     {
+        FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Enemies/BossDie", gameObject);
         StopAllCoroutines();
         currentMove = 0;
         anim.SetTrigger("Die");
@@ -180,7 +193,16 @@ public class Boss : MonoBehaviour
         // Do move
         currentMove = nextMove;
         anim.SetBool("Spin", true);
+        if (!IsPlaying(bossSpinSFX))
+        {
+            bossSpinSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Enemies/BossSpin");
+            FMODUnity.RuntimeManager.AttachInstanceToGameObject(bossSpinSFX, gameObject.transform);
+            bossSpinSFX.start();
+            bossSpinSFX.release();
+        }
         yield return new WaitForSeconds(moveDuration[currentMove - 1]);
+        bossSpinSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        bossSpinSFX.release();
         iconRend.sprite = null;
         currentMove = 0;
   
@@ -208,6 +230,23 @@ public class Boss : MonoBehaviour
 
         // Recurse
         StartCoroutine(NextMove());
+    }
+
+    private void OnDisable()
+    {
+        bossTargetSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        bossTargetSFX.release();
+    }
+    private void OnDestroy()
+    {
+        bossTargetSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+        bossTargetSFX.release();
+    }
+    bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        instance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 
 }

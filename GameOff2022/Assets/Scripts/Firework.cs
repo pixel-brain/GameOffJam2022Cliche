@@ -16,6 +16,8 @@ public class Firework : MonoBehaviour
     float upDist;
     float triggeredYPos;
 
+    private FMOD.Studio.EventInstance fireworkSFX;
+
     private void Start()
     {
         rigi = GetComponent<Rigidbody2D>();
@@ -31,6 +33,8 @@ public class Firework : MonoBehaviour
             // Blast
             if (rigi.position.y > upDist + triggeredYPos || rigi.position.y > maxHeight)
             {
+                fireworkSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+                fireworkSFX.release();
                 FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/LevelSFX/FireworksBoom", gameObject);
                 Instantiate(blastParticlesPrefab, transform.position, Quaternion.identity);
                 Destroy(gameObject);
@@ -42,6 +46,11 @@ public class Firework : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            fireworkSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/LevelSFX/Fireworks");
+            fireworkSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+            fireworkSFX.start();
+            fireworkSFX.release();
+
             triggeredYPos = rigi.position.y;
             rigi.rotation = 0;
             upParticles.Play();
