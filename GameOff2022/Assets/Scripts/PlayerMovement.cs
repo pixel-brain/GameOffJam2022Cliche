@@ -606,6 +606,7 @@ public class PlayerMovement : MonoBehaviour
 
     void PressedDisabledControl()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Blob/Error");
         controlsFailAnim.SetTrigger("Show");
     }
 

@@ -10,6 +10,7 @@ public class Follower : MonoBehaviour
     public LineRenderer lineRend;
     Transform player;
     Vector2 startPos;
+    private FMOD.Studio.EventInstance springSFX;
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +29,14 @@ public class Follower : MonoBehaviour
             float distFromStart = Vector2.Distance(startPos, transform.position);
             Quaternion rot = Quaternion.identity;
             if (distFromPlayer < engageDist && distFromStart < turnBackDist)
-            {
+            {            
+                if (!IsPlaying(springSFX))
+                {
+                    springSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Enemies/CubeStreach");
+                    springSFX.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject.transform));
+                    springSFX.start();
+                    springSFX.release();
+                }
                 transform.position = Vector3.MoveTowards(transform.position, player.position, moveSpeed * Time.deltaTime);
 
                 float angle = Mathf.Atan2(player.position.y, player.position.x) * Mathf.Rad2Deg;
@@ -44,5 +52,11 @@ public class Follower : MonoBehaviour
             lineRend.SetPosition(1, transform.position);
         }
 
+    }
+    bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        instance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
     }
 }

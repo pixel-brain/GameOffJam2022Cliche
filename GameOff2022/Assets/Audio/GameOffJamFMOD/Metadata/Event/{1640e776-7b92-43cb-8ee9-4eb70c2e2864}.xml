@@ -100,6 +100,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{21eb68a8-d18a-4eac-bacd-5a8d4647d366}">
+		<property name="volume">
+			<value>5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -116,6 +119,8 @@
 	<object class="MixerBusEffectChain" id="{71ae61ef-89ce-417f-95ac-06b31488d3cf}">
 		<relationship name="effects">
 			<destination>{726ab30a-e4f5-4ae6-9f6a-60732ed80f23}</destination>
+			<destination>{7481f979-b7b6-433f-8c7d-71d97351fdf7}</destination>
+			<destination>{faad89f2-f2f2-427d-b863-d76328b3494f}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{99d1ba58-980f-4f9f-8b99-73b5e32a3bfd}" />
@@ -135,6 +140,31 @@
 	</object>
 	<object class="MixerBusPanner" id="{17f6f662-9268-4647-9f38-753d6b1d4d31}" />
 	<object class="MixerBusFader" id="{726ab30a-e4f5-4ae6-9f6a-60732ed80f23}" />
+	<object class="PitchShifterEffect" id="{7481f979-b7b6-433f-8c7d-71d97351fdf7}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+		<property name="overlap">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{3d798e4a-388f-4529-87f7-781c701b471e}</destination>
+		</relationship>
+	</object>
+	<object class="DelayEffect" id="{faad89f2-f2f2-427d-b863-d76328b3494f}">
+		<property name="delay">
+			<value>120</value>
+		</property>
+		<property name="feedback">
+			<value>14</value>
+		</property>
+		<property name="level">
+			<value>-14</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{147487fc-4830-4ba0-a9ce-5cf2495d9141}</destination>
+		</relationship>
+	</object>
 	<object class="AutomationPoint" id="{4258c398-7e41-4a6c-b6bd-187ef41f8bb9}">
 		<property name="position">
 			<value>0.5</value>
@@ -155,4 +185,20 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{6b9a4325-cd52-4a88-bf31-63f1de45f8b2}" />
+	<object class="RandomizerModulator" id="{3d798e4a-388f-4529-87f7-781c701b471e}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>5.5</value>
+		</property>
+	</object>
+	<object class="RandomizerModulator" id="{147487fc-4830-4ba0-a9ce-5cf2495d9141}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>delay</value>
+		</property>
+		<property name="amount">
+			<value>14.5</value>
+		</property>
+	</object>
 </objects>

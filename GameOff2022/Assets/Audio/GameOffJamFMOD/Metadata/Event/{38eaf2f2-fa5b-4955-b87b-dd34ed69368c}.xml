@@ -100,6 +100,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{907a3d5c-de74-42ce-9223-5ac60df4c124}">
+		<property name="volume">
+			<value>-6.5</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -116,6 +119,7 @@
 	<object class="MixerBusEffectChain" id="{c6d3766d-0b01-4706-b854-38afcfc3cddd}">
 		<relationship name="effects">
 			<destination>{d04929ea-47fe-4679-9547-69877c09964a}</destination>
+			<destination>{e242ebb6-37cb-4ef5-b948-7d4d4f2f16cd}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{2d768074-65b9-4d65-bc63-ab2938ebc22f}" />
@@ -135,6 +139,17 @@
 	</object>
 	<object class="MixerBusPanner" id="{f3bdc30d-bb16-499d-bcf4-927b7be1abc3}" />
 	<object class="MixerBusFader" id="{d04929ea-47fe-4679-9547-69877c09964a}" />
+	<object class="PitchShifterEffect" id="{e242ebb6-37cb-4ef5-b948-7d4d4f2f16cd}">
+		<property name="pitch">
+			<value>1</value>
+		</property>
+		<property name="overlap">
+			<value>1</value>
+		</property>
+		<relationship name="modulators">
+			<destination>{04e35869-1cd6-4f29-bfca-8b0714bdc47c}</destination>
+		</relationship>
+	</object>
 	<object class="AutomationPoint" id="{7be1b98b-88f8-4285-a4ad-a6b4e4d7fcdf}">
 		<property name="position">
 			<value>0.20000000000000001</value>
@@ -155,4 +170,12 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{92cc6860-703b-4fbf-88d2-867ef5f92909}" />
+	<object class="RandomizerModulator" id="{04e35869-1cd6-4f29-bfca-8b0714bdc47c}">
+		<property name="nameOfPropertyBeingModulated">
+			<value>pitch</value>
+		</property>
+		<property name="amount">
+			<value>14</value>
+		</property>
+	</object>
 </objects>

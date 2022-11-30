@@ -48,13 +48,21 @@ public class DontDestroyOnLoad : MonoBehaviour
             {
                 BGM.setParameterByName("Intensity", 3);
             }
-            else if (sceneNum < 15)
+            else if (sceneNum < 14)
             {
                 BGM.setParameterByName("Intensity", 4);
             }
-            else if (sceneNum <= 17)
+            else if (sceneNum <= 15)
             {
                 BGM.setParameterByName("Intensity", 5);
+            }
+            else if (sceneNum <= 16)
+            {
+                BGM.setParameterByName("Intensity", 6);
+            }
+            else if (sceneNum <= 17)
+            {
+                BGM.setParameterByName("Intensity", 7);
             }
         }
         prevSceneNum = sceneNum;
