@@ -11,7 +11,7 @@ public class Laser : MonoBehaviour
     public FMOD.Studio.EventInstance laserSFX;
     private FMOD.Studio.EventInstance laserSFXhit;
 
-    private void Start()
+    private void OnEnable()
     {
 
             laserSFX = FMODUnity.RuntimeManager.CreateInstance("event:/SFX/Enemies/Laser");
