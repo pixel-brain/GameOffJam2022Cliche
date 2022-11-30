@@ -176,6 +176,8 @@ public class PlayerMovement : MonoBehaviour
         Instantiate(spawnPointEffect, transform.position, Quaternion.identity);
     }
 
+
+
     void Update()
     {
         // Controls disable

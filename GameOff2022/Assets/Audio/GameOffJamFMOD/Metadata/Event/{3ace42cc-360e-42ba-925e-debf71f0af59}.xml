@@ -63,6 +63,9 @@
 		<property name="voiceStealing">
 			<value>4</value>
 		</property>
+		<property name="maximumDistance">
+			<value>25</value>
+		</property>
 	</object>
 	<object class="MarkerTrack" id="{2e82ac6d-87d3-48ea-ba51-14a533517f6a}" />
 	<object class="GroupTrack" id="{4caafc01-a8f1-42a1-b149-7222a86ed320}">
@@ -110,9 +113,6 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{3d51fac8-566d-4f74-ad85-36a5eff853bb}">
-		<property name="volume">
-			<value>3</value>
-		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
@@ -151,30 +151,46 @@
 	<object class="MixerBusEffectChain" id="{862fd28e-68bc-46e3-a5cc-4500e27b8b3f}">
 		<relationship name="effects">
 			<destination>{428beb81-cc05-444e-ac71-565fd34ee7e1}</destination>
-			<destination>{9d0086a8-8ef4-4f01-b45a-49eff97b253f}</destination>
+			<destination>{3a5af720-4068-45eb-8580-3ac203fbaaea}</destination>
+			<destination>{a2de4da7-87a6-47e6-8a77-c5b3575697b1}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{d79df719-ddb5-42e5-b5ba-ce4fbe2dfa1d}" />
 	<object class="MixerBusFader" id="{f1bf3ff7-c07f-4653-b6fc-989f9b53f2b0}" />
-	<object class="SpatialiserEffect" id="{52229bc0-4ce8-4004-b4be-cdcb8b8caa5f}" />
+	<object class="SpatialiserEffect" id="{52229bc0-4ce8-4004-b4be-cdcb8b8caa5f}">
+		<property name="maximumDistance">
+			<value>25</value>
+		</property>
+	</object>
 	<object class="MixerBusFader" id="{428beb81-cc05-444e-ac71-565fd34ee7e1}" />
-	<object class="PitchShifterEffect" id="{9d0086a8-8ef4-4f01-b45a-49eff97b253f}">
+	<object class="PitchShifterEffect" id="{3a5af720-4068-45eb-8580-3ac203fbaaea}">
 		<property name="pitch">
-			<value>1</value>
+			<value>0.909999967</value>
+		</property>
+		<property name="fftSize">
+			<value>1060</value>
 		</property>
 		<property name="overlap">
 			<value>1</value>
 		</property>
+		<property name="maxChannels">
+			<value>0.100000001</value>
+		</property>
+	</object>
+	<object class="ThreeEQEffect" id="{a2de4da7-87a6-47e6-8a77-c5b3575697b1}">
+		<property name="highGain">
+			<value>6</value>
+		</property>
 		<relationship name="modulators">
-			<destination>{3655c7ab-f36e-4c0e-b451-85799c8cbdd1}</destination>
+			<destination>{60048efe-5271-4fdb-ba5f-d328e38d75df}</destination>
 		</relationship>
 	</object>
-	<object class="RandomizerModulator" id="{3655c7ab-f36e-4c0e-b451-85799c8cbdd1}">
+	<object class="RandomizerModulator" id="{60048efe-5271-4fdb-ba5f-d328e38d75df}">
 		<property name="nameOfPropertyBeingModulated">
-			<value>pitch</value>
+			<value>highGain</value>
 		</property>
 		<property name="amount">
-			<value>10.5</value>
+			<value>13</value>
 		</property>
 	</object>
 </objects>
