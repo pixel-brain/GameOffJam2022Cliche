@@ -188,7 +188,7 @@ public class Boss : MonoBehaviour
         if (stunCountdown <= 0)
         {
             iconToRemove = availableMoves[Random.Range(0, availableMoves.Count)];
-            stunCountdown = Random.Range(2, 4);
+            stunCountdown = 2;
 
             GameObject stealIcon = Instantiate(stealIconPrefab, transform.position, Quaternion.identity);
             stealIcon.GetComponent<SpriteRenderer>().sprite = iconSprites[iconToRemove - 1];

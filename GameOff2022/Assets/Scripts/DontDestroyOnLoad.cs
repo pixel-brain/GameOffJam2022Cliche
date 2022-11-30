@@ -7,7 +7,7 @@ public class DontDestroyOnLoad : MonoBehaviour
 {
     public static bool created;
     private FMOD.Studio.EventInstance BGM;
-    private int scene;
+    private int prevSceneNum;
     // Start is called before the first frame update
     void Awake()
     {
@@ -20,35 +20,46 @@ public class DontDestroyOnLoad : MonoBehaviour
             BGM = FMODUnity.RuntimeManager.CreateInstance("event:/BGM/Level");
             BGM.start();
             created = true;
+            prevSceneNum = -1;
             DontDestroyOnLoad(gameObject);
         }
     }
-    private void Update()
-    
+
+    // Function called on scene load
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-       if (SceneManager.GetActiveScene().buildIndex == 0) {
-            BGM.setParameterByName("Intensity", 0);
-        } else if (SceneManager.GetActiveScene().buildIndex >= 1 && SceneManager.GetActiveScene().buildIndex < 3)
+        int sceneNum = scene.buildIndex;
+        // If scene changed
+        if (prevSceneNum != sceneNum)
         {
-            BGM.setParameterByName("Intensity", 1);
+            if (sceneNum == 0)
+            {
+                BGM.setParameterByName("Intensity", 0);
+            }
+            else if (sceneNum < 3)
+            {
+                BGM.setParameterByName("Intensity", 1);
+            }
+            else if (sceneNum < 6)
+            {
+                BGM.setParameterByName("Intensity", 2);
+            }
+            else if (sceneNum < 11)
+            {
+                BGM.setParameterByName("Intensity", 3);
+            }
+            else if (sceneNum < 15)
+            {
+                BGM.setParameterByName("Intensity", 4);
+            }
+            else if (sceneNum <= 17)
+            {
+                BGM.setParameterByName("Intensity", 5);
+            }
         }
-        else if (SceneManager.GetActiveScene().buildIndex >= 3 && SceneManager.GetActiveScene().buildIndex < 6)
-        {
-            BGM.setParameterByName("Intensity", 2);
-        }
-        else if (SceneManager.GetActiveScene().buildIndex >= 6 && SceneManager.GetActiveScene().buildIndex < 11)
-        {
-            BGM.setParameterByName("Intensity", 3);
-        }
-        else if (SceneManager.GetActiveScene().buildIndex >= 11 && SceneManager.GetActiveScene().buildIndex < 15)
-        {
-            BGM.setParameterByName("Intensity", 4);
-        }
-        else if (SceneManager.GetActiveScene().buildIndex >= 15 && SceneManager.GetActiveScene().buildIndex <= 17)
-        {
-            BGM.setParameterByName("Intensity", 5);
-        }
+        prevSceneNum = sceneNum;
     }
+
     private void OnDestroy()
     {
         BGM.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
@@ -57,7 +68,16 @@ public class DontDestroyOnLoad : MonoBehaviour
 
 
     }
- 
+
+    // Setup for function call on scene load
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 
 
 }

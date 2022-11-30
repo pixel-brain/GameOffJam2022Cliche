@@ -100,6 +100,17 @@ public partial class @InputMain : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
+                    ""id"": ""2876fc1f-2875-4058-b1ff-932e25522163"",
+                    ""path"": ""<Mouse>/press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""ace50ce8-4bfc-4998-b7dd-4b0926038eba"",
                     ""path"": ""<Gamepad>/leftStick/x"",
                     ""interactions"": """",
