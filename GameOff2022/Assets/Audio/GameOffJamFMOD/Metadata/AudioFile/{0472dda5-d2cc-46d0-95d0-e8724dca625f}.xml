@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{0472dda5-d2cc-46d0-95d0-e8724dca625f}">
+		<property name="assetPath">
+			<value>noisesnare2.mp3</value>
+		</property>
+		<property name="isStreaming">
+			<value>true</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>19.252244897959184</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{c8906a91-9fff-4d4b-8546-6bf771ff8e7a}</destination>
+		</relationship>
+	</object>
+</objects>
