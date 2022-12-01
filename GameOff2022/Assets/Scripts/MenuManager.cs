@@ -31,7 +31,10 @@ public class MenuManager : MonoBehaviour
         {
             if (selected + 1 > menus.Length - 1)
             {
-                Application.Quit();
+                if (Application.platform != RuntimePlatform.WebGLPlayer)
+                {
+                    Application.Quit();
+                }
             }
             else
             {

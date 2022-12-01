@@ -17,12 +17,24 @@ public class DontDestroyOnLoad : MonoBehaviour
         }
         else
         {
-            BGM = FMODUnity.RuntimeManager.CreateInstance("event:/BGM/Level");
-            BGM.start();
+            if (Application.platform != RuntimePlatform.WebGLPlayer)
+            {
+                StartMusic();
+            }
+            else
+            {
+                GameObject.Find("StartMusic").transform.GetChild(0).gameObject.SetActive(true);
+            }
             created = true;
             prevSceneNum = -1;
             DontDestroyOnLoad(gameObject);
         }
+    }
+
+    public void StartMusic()
+    {
+        BGM = FMODUnity.RuntimeManager.CreateInstance("event:/BGM/Level");
+        BGM.start();
     }
 
     // Function called on scene load
@@ -87,5 +99,12 @@ public class DontDestroyOnLoad : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
+
+    bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        FMOD.Studio.PLAYBACK_STATE state;
+        instance.getPlaybackState(out state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+    }
 
 }
