@@ -249,7 +249,7 @@ PrefabInstance:
       objectReference: {fileID: 1539057276}
     - target: {fileID: 7032996209478540585, guid: 2159ca406ae9e254eb6c8535e855542b, type: 3}
       propertyPath: controlsDisabledTime
-      value: 15.4
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 7032996209478540585, guid: 2159ca406ae9e254eb6c8535e855542b, type: 3}
       propertyPath: controlStateTimerText

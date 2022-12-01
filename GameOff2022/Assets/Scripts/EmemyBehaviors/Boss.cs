@@ -30,6 +30,7 @@ public class Boss : MonoBehaviour
 
 
     [Header("References")]
+    public GameObject laserTelegraph;
     public GameObject wallBlock;
     public GameObject bossIconsCanvas;
     public ParticleSystem dieParticlesPrefab;
@@ -50,6 +51,7 @@ public class Boss : MonoBehaviour
     int currentWaypoint;
     int stunCountdown;
     int iconToRemove;
+    bool playerOnLeft;
 
     public int currentMove;
     Vector2 startPos;
@@ -61,10 +63,10 @@ public class Boss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         startPos = transform.position;
-        stunCountdown = 2;
         Setup();
+        stunCountdown = 2;
         StartCoroutine(NextMove());
     }
 
@@ -72,9 +74,9 @@ public class Boss : MonoBehaviour
     void Update()
     {
         // Return to start pos
-        if (currentMove == 0)
+        if (currentMove == 0 || player == null)
         {
-            
+
 
             transform.position = Vector2.MoveTowards(transform.position, startPos, Time.deltaTime * returnToStartSpeed);
         }
@@ -93,8 +95,9 @@ public class Boss : MonoBehaviour
         // Shoot lasers
         else if (currentMove == 2)
         {
+            int dir = playerOnLeft ? -1 : 1;
             lasers.SetActive(true);
-            lasers.transform.eulerAngles += new Vector3(0, 0, laserSpinSpeed * Time.deltaTime);
+            lasers.transform.eulerAngles += new Vector3(0, 0, dir * laserSpinSpeed * Time.deltaTime);
         }
         // Move around room
         else if (currentMove == 3)
@@ -128,7 +131,7 @@ public class Boss : MonoBehaviour
                 transform.position = Vector2.MoveTowards(transform.position, target.position, Time.deltaTime * targetStrikeSpeed);
             }
             lockTimer -= Time.deltaTime;
-            
+
         }
         // Zigzag
         else if (currentMove == 5)
@@ -182,13 +185,16 @@ public class Boss : MonoBehaviour
 
     IEnumerator NextMove()
     {
-        
+
         // Get Random move
         int nextMove = availableMoves[Random.Range(0, availableMoves.Count)];
 
         // Telegraph move
         iconRend.sprite = iconSprites[nextMove - 1];
+        if (nextMove == 2)
+            laserTelegraph.SetActive(true);
         yield return new WaitForSeconds(telegraphTime);
+        laserTelegraph.SetActive(false);
 
         // Do move
         currentMove = nextMove;
@@ -200,12 +206,14 @@ public class Boss : MonoBehaviour
             bossSpinSFX.start();
             bossSpinSFX.release();
         }
+        if (player != null)
+            playerOnLeft = player.position.x < 0;
         yield return new WaitForSeconds(moveDuration[currentMove - 1]);
         bossSpinSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         bossSpinSFX.release();
         iconRend.sprite = null;
         currentMove = 0;
-  
+
 
         // Setup for next move
         Setup();
@@ -218,7 +226,7 @@ public class Boss : MonoBehaviour
         if (stunCountdown <= 0)
         {
             iconToRemove = availableMoves[Random.Range(0, availableMoves.Count)];
-            stunCountdown = 2;
+            stunCountdown = Random.Range(1, 3);
 
             GameObject stealIcon = Instantiate(stealIconPrefab, transform.position, Quaternion.identity);
             stealIcon.GetComponent<SpriteRenderer>().sprite = iconSprites[iconToRemove - 1];
@@ -236,11 +244,11 @@ public class Boss : MonoBehaviour
     {
         bossTargetSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
         bossTargetSFX.release();
-    }
-    private void OnDestroy()
-    {
-        bossTargetSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
-        bossTargetSFX.release();
+        if (IsPlaying(bossSpinSFX))
+        {
+            bossSpinSFX.stop(FMOD.Studio.STOP_MODE.ALLOWFADEOUT);
+            bossSpinSFX.release();
+        }
     }
     bool IsPlaying(FMOD.Studio.EventInstance instance)
     {

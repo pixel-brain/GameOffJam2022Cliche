@@ -1281,7 +1281,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1968982436, guid: 7310f20b810238842979574187bbc156, type: 3}
       propertyPath: rotateSpeed
-      value: 4.2
+      value: 4.25
       objectReference: {fileID: 0}
     - target: {fileID: 1968982436, guid: 7310f20b810238842979574187bbc156, type: 3}
       propertyPath: easingFunction

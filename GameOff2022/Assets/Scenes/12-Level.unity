@@ -140,7 +140,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3110167946508354804, guid: ab0a284bdc531824da08f26be26e36e2, type: 3}
       propertyPath: chargeTime
-      value: 1.9
+      value: 1.97
       objectReference: {fileID: 0}
     - target: {fileID: 3110167946508354806, guid: ab0a284bdc531824da08f26be26e36e2, type: 3}
       propertyPath: m_RootOrder
