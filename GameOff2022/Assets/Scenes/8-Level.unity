@@ -1031,6 +1031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Background
       objectReference: {fileID: 0}
+    - target: {fileID: 3845887373574262449, guid: 8e15e024c081fc745b515c8f43be8df4, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3b54875f241689746a9c7452e382dcc3, type: 3}
     - target: {fileID: 3845887373574262450, guid: 8e15e024c081fc745b515c8f43be8df4, type: 3}
       propertyPath: m_RootOrder
       value: 9
